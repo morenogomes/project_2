@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+  <head> 
+    <meta charset="utf-8" /> 
+    <title>Dev | Open Sound</title>  
+    <meta name="description" content="web app, responsive" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    
+    <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" /> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  
+  <body class=""> 
+    <section class="vbox"> 
+      <header class="bg-white-only header header-md navbar navbar-fixed-top-xs"> 
+        <div class="navbar-header aside bg-info dk">
+          <a href="app.html" class="navbar-brand text-lt"> 
+            <img src="images/os.png" alt=".">
+            <span class="hidden-nav-xs m-l-sm">Open Sound</span> 
+          </a> 
+        </div> 
+        <ul class="nav navbar-nav hidden-xs"> 
+          <li> 
+            <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted"> 
+              <i class="fas fa-outdent text"></i> 
+              <i class="fas fa-indent text-active"></i> 
+            </a> 
+          </li> 
+        </ul> 
+        
+        <div class="navbar-right">
+          <ul class="nav navbar-nav m-n hidden-xs nav-user user">  
+            <li> 
+              <a href="signin.html"> 
+                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
+                  <img src="images/p@icon2.jpg" alt="..."> 
+                  <i class="on b-white"></i> 
+                </span> 
+                User.Anonymous
+              </a>  
+            </li> 
+          </ul> 
+        </div> 
+      </header> 
+      
+      <section> 
+        <section class="hbox stretch"> 
+          <aside class="bg-black dk aside hidden-print" id="nav"> 
+            <section class="vbox"> 
+              <section class="w-f-md scrollable"> 
+                <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2"> 
+                  <nav class="nav-primary hidden-xs"> 
+
+                    <ul class="nav text-sm"> 
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted"> 
+                        <span class="pull-right"> 
+                          <i class="fab fa-teamspeak"></i> 
+                        </span>  
+                        User.Anonymous 
+                      </li>
+                      <li> 
+                        <a href="signin.html"> 
+                          <i class="fas fa-sign-out-alt icon text-danger-lter"></i> 
+                          <span>Sign Out</span> 
+                        </a> 
+                      </li> 
+                      <li class="m-b hidden-nav-xs"></li> 
+                    </ul>
+
+                    <ul class="nav bg clearfix" data-ride="collapse"> 
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted"> Search </li>
+                      <li> 
+                        <a href="" class="auto"> 
+                          <span class="pull-right text-muted"> 
+                            <i class="fas fa-angle-down text"></i> 
+                            <i class="fas fa-angle-up text-active"></i> 
+                          </span> 
+                          <i class="fas fa-search icon text-success"> </i> 
+                          <span>Artists</span> 
+                        </a> 
+                        <ul class="nav dk text-sm"> 
+                          <li> 
+                            <div class="auto">  
+                              <input type="text" class="form-control input-sm no-border rounded" placeholder="Search artists...">  
+                            </div> 
+                          </li>  
+                        </ul> 
+                      </li> 
+                      <li> 
+                        <a href="" class="auto"> 
+                          <span class="pull-right text-muted"> 
+                            <i class="fas fa-angle-down text"></i> 
+                            <i class="fas fa-angle-up text-active"></i> 
+                          </span> 
+                          <i class="fas fa-search icon text-info"> </i> 
+                          <span>Songs</span> 
+                        </a> 
+                        <ul class="nav dk text-sm"> 
+                          <li> 
+                            <div class="auto">   
+                              <input type="text" class="form-control input-sm no-border rounded" placeholder="Search songs...">  
+                            </div> 
+                          </li>  
+                        </ul> 
+                      </li> 
+                      <li> 
+                        <a href="" class="auto"> 
+                          <span class="pull-right text-muted"> 
+                            <i class="fas fa-angle-down text"></i> 
+                            <i class="fas fa-angle-up text-active"></i> 
+                          </span> 
+                          <i class="fas fa-search icon text-primary-lter"> </i> 
+                          <span>Albums</span> 
+                        </a> 
+                        <ul class="nav dk text-sm"> 
+                          <li> 
+                            <div class="auto"> 
+                              <input type="text" class="form-control input-sm no-border rounded" placeholder="Search albums...">  
+                            </div> 
+                          </li>  
+                        </ul> 
+                      </li> 
+                      <li class="m-b hidden-nav-xs"></li> 
+                    </ul> 
+                    
+                    <ul class="nav text-sm"> 
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted"> 
+                        <span class="pull-right">
+                          <a href="">
+                            <i class="fas fa-plus-circle i-lg"></i>
+                          </a>
+                        </span> 
+                        Playlist 
+                      </li>
+                      <li> 
+                        <a href=""> 
+                          <i class="fab fa-mixcloud icon text-success-lter"></i> 
+                          <span>Barbarian Pop</span> 
+                        </a> 
+                      </li> 
+                      <li> 
+                        <a href=""> 
+                          <i class="fab fa-mixcloud icon"></i> 
+                          <span>Rock</span> 
+                        </a> 
+                      </li> 
+                      <li> 
+                        <a href=""> 
+                          <i class="fab fa-mixcloud icon"></i> 
+                          <span>Hip-Hop</span> 
+                        </a> 
+                      </li>
+                      <li> 
+                        <a href=""> 
+                          <i class="fab fa-mixcloud icon"></i> 
+                          <span>Rap</span> 
+                        </a> 
+                      </li>
+                      <li> 
+                        <a href=""> 
+                          <i class="fab fa-mixcloud icon"></i> 
+                          <span>Jazz</span> 
+                        </a> 
+                      </li> 
+                    </ul> 
+                  </nav>
+                </div> 
+              </section> 
+
+              <footer class="footer hidden-xs no-padder text-center-nav-xs"> 
+                <div class="dropdown dropup wrapper-sm clearfix"> 
+                  <nav class="nav-primary hidden-xs">
+                    <ul class="nav text-sm"> 
+                      <li> 
+                        <a href="profile.html" style="background-color:#181f24;"> 
+                          <i class="fas fa-users icon text-warning-lter"></i>
+                          <span class="text-warning-lter">Our Team</span> 
+                        </a> 
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </footer>
+
+            </section> 
+          </aside> 
+          
+          <section id="content"> 
+            <section class="vbox">  
+              <section class="scrollable"> 
+                <section class="hbox stretch"> 
+
+                  <aside class="aside-md bg-light lter b-r"> 
+                    <section class="vbox"> 
+                      <section class="scrollable"> 
+                        <div class="wrapper"> 
+                          <div class="text-center m-b m-t"> 
+                            <a href="#" class="thumb-lg"> 
+                              <img src="images/anonymous.jpg" class="img-circle"> 
+                            </a> 
+                            <div> 
+                              <div class="h3 m-t-xs m-b-xs">Anson</div> 
+                              <small class="text-muted">
+                                <i class="fas fa-map-marked-alt"></i> 
+                                Toronto, CA
+                              </small> 
+                            </div> 
+                          </div> 
+                          <div class="btn-group btn-group-justified m-b"> 
+                            <a class="btn btn-info btn-rounded" data-toggle="button"> 
+                              <span class="text"> 
+                                Front-End 
+                              </span>
+                            </a> 
+                            <a class="btn btn-danger btn-rounded"> 
+                              Back-End 
+                            </a> 
+                          </div> 
+                          <div> 
+                            <small class="text-uc text-xs text-muted">about me</small> 
+                            <p>Full-Stack Web Developer</p> 
+                            <small class="text-uc text-xs text-muted">info</small> 
+                            <p>Add some text here..</p> 
+                            <div class="line"></div> 
+                            <small class="text-uc text-xs text-muted">connection:</small> 
+                              <a href="https://github.com/ansonhywong" target="_blank" class="btn btn-rounded btn-gplus btn-icon">
+                                <i class="fab fa-github"></i>
+                              </a> 
+                          </div> 
+                        </div> 
+                      </section> 
+                    </section> 
+                  </aside>
+                  
+                  <aside class="aside-md bg-light dker b-r"> 
+                    <section class="vbox"> 
+                      <section class="scrollable"> 
+                        <div class="wrapper"> 
+                          <div class="text-center m-b m-t"> 
+                            <a href="#" class="thumb-lg"> 
+                              <img src="images/anonymous.jpg" class="img-circle"> 
+                            </a> 
+                            <div> 
+                              <div class="h3 m-t-xs m-b-xs">David</div> 
+                              <small class="text-muted">
+                                <i class="fas fa-map-marked-alt"></i> 
+                                Toronto, CA
+                              </small> 
+                            </div> 
+                          </div> 
+                          <div class="btn-group btn-group-justified m-b"> 
+                            <a class="btn btn-info btn-rounded" data-toggle="button"> 
+                              <span class="text"> 
+                                Front-End 
+                              </span>
+                            </a> 
+                            <a class="btn btn-danger btn-rounded"> 
+                              Back-End 
+                            </a> 
+                          </div> 
+                          <div> 
+                            <small class="text-uc text-xs text-muted">about me</small> 
+                            <p>Full-Stack Web Developer</p> 
+                            <small class="text-uc text-xs text-muted">info</small> 
+                            <p>Add some text here..</p> 
+                            <div class="line"></div> 
+                            <small class="text-uc text-xs text-muted">connection:</small> 
+                              <a href="https://github.com/dghazi12" target="_blank" class="btn btn-rounded btn-gplus btn-icon">
+                                <i class="fab fa-github"></i>
+                              </a> 
+                          </div> 
+                        </div> 
+                      </section> 
+                    </section>
+                  </aside>
+
+                  <aside class="aside-md bg-light lter b-r"> 
+                    <section class="vbox"> 
+                      <section class="scrollable"> 
+                        <div class="wrapper"> 
+                          <div class="text-center m-b m-t"> 
+                            <a href="#" class="thumb-lg"> 
+                              <img src="images/anonymous.jpg" class="img-circle"> 
+                            </a> 
+                            <div> 
+                              <div class="h3 m-t-xs m-b-xs">Leeroy</div> 
+                              <small class="text-muted">
+                                <i class="fas fa-map-marked-alt"></i> 
+                                Toronto, CA
+                              </small> 
+                            </div> 
+                          </div> 
+                          <div class="btn-group btn-group-justified m-b"> 
+                            <a class="btn btn-info btn-rounded" data-toggle="button"> 
+                              <span class="text"> 
+                                Front-End 
+                              </span>
+                            </a> 
+                            <a class="btn btn-danger btn-rounded"> 
+                              Back-End 
+                            </a> 
+                          </div> 
+                          <div> 
+                            <small class="text-uc text-xs text-muted">about me</small> 
+                            <p>Full-Stack Web Developer</p> 
+                            <small class="text-uc text-xs text-muted">info</small> 
+                            <p>Add some text here..</p> 
+                            <div class="line"></div> 
+                            <small class="text-uc text-xs text-muted">connection:</small> 
+                              <a href="https://github.com/leeroyp" target="_blank" class="btn btn-rounded btn-gplus btn-icon">
+                                <i class="fab fa-github"></i>
+                              </a> 
+                          </div> 
+                        </div> 
+                      </section> 
+                    </section> 
+                  </aside>
+
+                  <aside class="aside-md bg-light dker b-r"> 
+                    <section class="vbox"> 
+                      <section class="scrollable"> 
+                        <div class="wrapper"> 
+                          <div class="text-center m-b m-t"> 
+                            <a href="#" class="thumb-lg"> 
+                              <img src="images/anonymous.jpg" class="img-circle"> 
+                            </a> 
+                            <div> 
+                              <div class="h3 m-t-xs m-b-xs">Moreno</div> 
+                              <small class="text-muted">
+                                <i class="fas fa-map-marked-alt"></i> 
+                                Toronto, CA
+                              </small> 
+                            </div> 
+                          </div> 
+                          <div class="btn-group btn-group-justified m-b"> 
+                            <a class="btn btn-info btn-rounded" data-toggle="button"> 
+                              <span class="text"> 
+                                Front-End 
+                              </span>
+                            </a> 
+                            <a class="btn btn-danger btn-rounded"> 
+                              Back-End 
+                            </a> 
+                          </div> 
+                          <div> 
+                            <small class="text-uc text-xs text-muted">about me</small> 
+                            <p>Full-Stack Web Developer</p> 
+                            <small class="text-uc text-xs text-muted">info</small> 
+                            <p>Add some text here..</p> 
+                            <div class="line"></div> 
+                            <small class="text-uc text-xs text-muted">connection:</small> 
+                              <a href="https://github.com/morenogomes" target="_blank" class="btn btn-rounded btn-gplus btn-icon">
+                                <i class="fab fa-github"></i>
+                              </a> 
+                          </div> 
+                        </div> 
+                      </section> 
+                    </section> 
+                  </aside>
+
+                  <aside class="aside-md bg-light lter b-r"> 
+                    <section class="vbox"> 
+                      <section class="scrollable"> 
+                        <div class="wrapper"> 
+                          <div class="text-center m-b m-t"> 
+                            <a href="#" class="thumb-lg"> 
+                              <img src="images/anonymous.jpg" class="img-circle"> 
+                            </a> 
+                            <div> 
+                              <div class="h3 m-t-xs m-b-xs">Rafwat</div> 
+                              <small class="text-muted">
+                                <i class="fas fa-map-marked-alt"></i> 
+                                Toronto, CA
+                              </small> 
+                            </div> 
+                          </div> 
+                          <div class="btn-group btn-group-justified m-b"> 
+                            <a class="btn btn-info btn-rounded" data-toggle="button"> 
+                              <span class="text"> 
+                                Front-End 
+                              </span>
+                            </a> 
+                            <a class="btn btn-danger btn-rounded"> 
+                              Back-End 
+                            </a>
+                          </div> 
+                          <div> 
+                            <small class="text-uc text-xs text-muted">about me</small> 
+                            <p>Full-Stack Web Developer</p> 
+                            <small class="text-uc text-xs text-muted">info</small> 
+                            <p>Add some text here..</p> 
+                            <div class="line"></div> 
+                            <small class="text-uc text-xs text-muted">connection:</small> 
+                              <a href="https://github.com/rafwat" target="_blank" class="btn btn-rounded btn-gplus btn-icon">
+                                <i class="fab fa-github"></i>
+                              </a> 
+                          </div> 
+                        </div> 
+                      </section> 
+                    </section> 
+                  </aside>
+
+                  <aside class="aside-md bg-light dker b-r"> 
+                    <section class="vbox"> 
+                      <section class="scrollable"> 
+                        <div class="wrapper"> 
+                          <div class="text-center m-b m-t"> 
+                            <a href="#" class="thumb-lg"> 
+                              <img src="images/anonymous.jpg" class="img-circle"> 
+                            </a> 
+                            <div> 
+                              <div class="h3 m-t-xs m-b-xs">Rodrigo</div> 
+                              <small class="text-muted">
+                                <i class="fas fa-map-marked-alt"></i> 
+                                Toronto, CA
+                              </small> 
+                            </div> 
+                          </div> 
+                          <div class="btn-group btn-group-justified m-b"> 
+                            <a class="btn btn-info btn-rounded" data-toggle="button"> 
+                              <span class="text"> 
+                                Front-End 
+                              </span>
+                            </a> 
+                            <a class="btn btn-danger btn-rounded"> 
+                              Back-End 
+                            </a> 
+                          </div> 
+                          <div> 
+                            <small class="text-uc text-xs text-muted">about me</small> 
+                            <p>Full-Stack Web Developer</p> 
+                            <small class="text-uc text-xs text-muted">info</small> 
+                            <p>Add some text here..</p> 
+                            <div class="line"></div> 
+                            <small class="text-uc text-xs text-muted">connection:</small> 
+                              <a href="https://github.com/rodrigomgimenes"  target="_blank" class="btn btn-rounded btn-gplus btn-icon">
+                                <i class="fab fa-github"></i>
+                              </a> 
+                          </div> 
+                        </div> 
+                      </section> 
+                    </section> 
+                  </aside>
+                </section> 
+              </section> 
+
+              <footer class="footer bg-dark jp-controls"> 
+                <div class="text-center padder">
+                  <small>All right reserved. &copy; Copyright 2020</small>
+                </div>
+              </footer> 
+
+            </section>
+          </section> 
+        </section> 
+      </section> 
+    </section> 
+    
+    <script src="js/app.js"></script> 
+  </body>
+</html>
