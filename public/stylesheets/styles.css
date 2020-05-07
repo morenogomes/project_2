@@ -4667,7 +4667,7 @@ button.close{
   color:#fff
 }
 
-@font-face{
+/* @font-face{
   font-family:'Source Sans Pro';
   font-style:normal;
   font-weight:300;
@@ -4684,14 +4684,15 @@ button.close{
   font-style:normal;
   font-weight:700;
   src:local('Source Sans Pro Bold'),local('SourceSansPro-Bold'),url('../fonts/sourcesanspro/sourcesanspro-bold.woff') format('woff');
-}
+} */
 
 html{
   background-color:#f2f4f8;
   overflow-x:hidden;
 }
 body{
-  font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif; */
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size:14px;
   color:#788188;
   background-color:transparent;
