@@ -29,17 +29,19 @@ module.exports = function(sequelize, DataTypes) {
 
   // Creating a custom method to check if the email/password entered by the user is the same to the email/password stored in our database
   User.prototype.validUserInfo = function(userinfo, pswd) {
-    console.log(`User info: ${userinfo}  -  Stored info: ${(pswd ? this.password : (!this.email ? this.username : this.email))}`)
-
     let result = false;
     if (!pswd){
-      result = userinfo.localeCompare(this.email)
+      console.log(`User info: ${userinfo}  -  Stored info: ${this.email}`)
+      result = userinfo.localeCompare(toString(this.email));
       if (!result){
-        result = userinfo.localeCompare(this.username)
+        console.log(`User info: ${userinfo}  -  Stored info: ${this.username}`)
+        result = userinfo.localeCompare(toString(this.username));
       }
     }
-    else
-      result = userinfo.localeCompare(this.password);
+    else{
+      console.log(`User info: ${userinfo}  -  Stored info: ${this.password}`)
+      result = userinfo.localeCompare(toString(this.password));
+    }
 
     return result;
   };
