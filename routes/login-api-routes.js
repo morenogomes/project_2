@@ -26,15 +26,29 @@ module.exports = function(app) {
 
   // Sign In Route: If the user has valid login credentials, send them to the app page, otherwise send back an error
   app.post("/api/signin", function(req, res) {
-    const user_email    = (!req.body.email ? req.body.username : req.body.email);
+    const user_email    = req.body.email;
     const user_password = req.body.password;
 
-    db.User.findOne({
-      where: {
-        email:    user_email,
-        password: user_password
+    if (user_email.search("@") < 0 && user_email.length > 0) {
+      condition = {
+        where: {
+          username: user_email,
+          password: user_password
+        }
       }
-    })
+    }
+    else {
+      condition = {
+        where: {
+          email:    user_email,
+          password: user_password
+        }
+      }
+    }
+
+    console.log(condition)
+
+    db.User.findOne(condition)
       .then(function(dbUser) {
         // If there's no user with the given email
         if (!dbUser.validUserInfo(user_email, false)) {
