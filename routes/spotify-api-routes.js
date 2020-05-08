@@ -12,6 +12,8 @@ let track = "my heart will go on"
 let artist = "rihanna"
 let album = "take care"
 
+module.exports = function(app) {
+
 app.get('/api/track', (req, res) => {
     spotify
         .request('https://api.spotify.com/v1/search?query=' + track + '&type=track&offset=0&limit=2')
@@ -53,4 +55,4 @@ app.get('/api/album', (req, res) => {
 //     res.sendFile(path.join(__dirname, "./public/error.html"));
 // });
 
-module.exports = app;
+}
