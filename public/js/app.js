@@ -2,10 +2,14 @@ $(document).ready( function() {
   // Getting which user is Signed In (from localStorage) and updating the HTML
   // =============================================================
   $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
-                              <img src="images/p@icon2.jpg" alt="..."> 
-                              <i class="on b-white"></i> 
-                            </span>
+                             <img src="images/p@icon2.jpg" alt="..."> 
+                             <i class="on b-white"></i> 
+                          </span>
                             ${localStorage.getItem("anonymus")}`);
+  $("#user-signed-in").append(`<span class="pull-right">
+                                 <i class="fab fa-teamspeak"></i>
+                               </span>  
+                               ${localStorage.getItem("anonymus")}`);
 
   // Making object dynamics
   // =============================================================
