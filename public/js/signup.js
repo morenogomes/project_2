@@ -16,7 +16,6 @@ $(document).ready(function() {
       password: passwordInput.val().trim()
     };
 
-    console.log(`Email: ${userData.email}  |  Username: ${userData.username}  |  Password: ${userData.password}`)
     // Validate the email and password are NOT blank
     if (!userData.email || !userData.password) {
       return;
@@ -32,7 +31,6 @@ $(document).ready(function() {
 
   // POST method to the signup route. [Successful = Members page | Failed = 404 Page]
   function signUpUser(email, username, password) {
-    console.log("Now it's time to INSERT info into the database")
     $.post("/api/signup", {
       email: email,
       username: username,
@@ -45,8 +43,8 @@ $(document).ready(function() {
   }
 
   function handleLoginError(err) {
-    console.log(err);
-    console.log(err.responseJSON);
+    // console.log(err);
+    // console.log(err.responseJSON);
     window.location.replace("/error");
   }
 });

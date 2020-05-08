@@ -20,36 +20,47 @@ module.exports = function(app) {
         res.redirect(301, "/app"); 
       })
       .catch(function(err) {
-        res.status(401).json(err);
+        res.redirect(404, "/error");
       });
   });
 
   // Sign In Route: If the user has valid login credentials, send them to the app page, otherwise send back an error
   app.post("/api/signin", function(req, res) {
-    const user_email    = (!req.params.email ? req.params.username : req.params.email);
-    const user_password = req.params.password;
+    const user_email    = (!req.body.email ? req.body.username : req.body.email);
+    const user_password = req.body.password;
+
     db.User.findOne({
       where: {
-        email: user_email,
+        email:    user_email,
         password: user_password
       }
-    }).then(function(dbUser) {
-      // If there's no user with the given email
-      if (!dbUser.validUserInfo(user_email, false)) {
-        console.log("When a user tries to sign in: Incorrect email.");
+    })
+      .then(function(dbUser) {
+        // If there's no user with the given email
+        if (!dbUser.validUserInfo(user_email, false)) {
+          console.log("When a user tries to sign in: Incorrect email.");
 
-        // Redirect to Error page
-        res.redirect(404, "/error");
-      }
-      // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.validUserInfo(user_password, true)) {
-        console.log("When a user tries to sign in: Incorrect password.");
+          // Redirect to Error page
+          res.redirect(404, "/error");
+        }
+        // If there is a user with the given email, but the password the user gives us is incorrect
+        else if (!dbUser.validUserInfo(user_password, true)) {
+          console.log("When a user tries to sign in: Incorrect password.");
 
-        // Redirect to Error page
+          // Redirect to Error page
+          res.redirect(404, "/error");
+        }
+        else
+          res.json(dbUser);
+      })
+      .catch(function(err) {
         res.redirect(404, "/error");
-      }
-      else
-        res.json(dbUser);
-    });
+      });
+  });
+
+  // Sign Out Route
+  app.get("/signout", function(req, res) {
+    // Redirect to Sign In page
+    res.redirect("/signin");
   });
 };

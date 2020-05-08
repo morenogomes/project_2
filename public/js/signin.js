@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // Getting references to form and input
-  var signInForm    = $("form#signin");
+  var signInForm    = $("form.signin");
   var emailInput    = $("input#email-input");
   var passwordInput = $("input#password-input");
 
@@ -38,8 +38,8 @@ $(document).ready(function() {
   }
 
   function handleLoginError(err) {
-    console.log(err);
-    console.log(err.responseJSON);
+    // console.log(err);
+    // console.log(err.responseJSON);
     window.location.replace("/error");
   }
 });
