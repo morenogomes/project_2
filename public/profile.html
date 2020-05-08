@@ -15,7 +15,7 @@
     <section class="vbox"> 
       <header class="bg-white-only header header-md navbar navbar-fixed-top-xs"> 
         <div class="navbar-header aside bg-info dk">
-          <a href="app.html" class="navbar-brand text-lt"> 
+          <a href="/app" class="navbar-brand text-lt"> 
             <img src="images/os.png" alt=".">
             <span class="hidden-nav-xs m-l-sm">Open Sound</span> 
           </a> 
@@ -32,13 +32,7 @@
         <div class="navbar-right">
           <ul class="nav navbar-nav m-n hidden-xs nav-user user">  
             <li> 
-              <a href="signin.html"> 
-                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
-                  <img src="images/p@icon2.jpg" alt="..."> 
-                  <i class="on b-white"></i> 
-                </span> 
-                User.Anonymous
-              </a>  
+              <a href="" id="user-name"></a>  
             </li> 
           </ul> 
         </div> 
@@ -53,14 +47,9 @@
                   <nav class="nav-primary hidden-xs"> 
 
                     <ul class="nav text-sm"> 
-                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted"> 
-                        <span class="pull-right"> 
-                          <i class="fab fa-teamspeak"></i> 
-                        </span>  
-                        User.Anonymous 
-                      </li>
+                      <li id="user-signed-in" class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted"></li>
                       <li> 
-                        <a href="signin.html"> 
+                        <a href="/signin"> 
                           <i class="fas fa-sign-out-alt icon text-danger-lter"></i> 
                           <span>Sign Out</span> 
                         </a> 
@@ -126,44 +115,15 @@
                     
                     <ul class="nav text-sm"> 
                       <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted"> 
-                        <span class="pull-right">
-                          <a href="">
-                            <i class="fas fa-plus-circle i-lg"></i>
-                          </a>
-                        </span> 
                         Playlist 
                       </li>
                       <li> 
                         <a href=""> 
                           <i class="fab fa-mixcloud icon text-success-lter"></i> 
-                          <span>Barbarian Pop</span> 
+                          <span>Music</span> 
                         </a> 
-                      </li> 
-                      <li> 
-                        <a href=""> 
-                          <i class="fab fa-mixcloud icon"></i> 
-                          <span>Rock</span> 
-                        </a> 
-                      </li> 
-                      <li> 
-                        <a href=""> 
-                          <i class="fab fa-mixcloud icon"></i> 
-                          <span>Hip-Hop</span> 
-                        </a> 
-                      </li>
-                      <li> 
-                        <a href=""> 
-                          <i class="fab fa-mixcloud icon"></i> 
-                          <span>Rap</span> 
-                        </a> 
-                      </li>
-                      <li> 
-                        <a href=""> 
-                          <i class="fab fa-mixcloud icon"></i> 
-                          <span>Jazz</span> 
-                        </a> 
-                      </li> 
-                    </ul> 
+                      </li>  
+                    </ul>  
                   </nav>
                 </div> 
               </section> 
@@ -173,7 +133,7 @@
                   <nav class="nav-primary hidden-xs">
                     <ul class="nav text-sm"> 
                       <li> 
-                        <a href="profile.html" style="background-color:#181f24;"> 
+                        <a href="/profile" style="background-color:#181f24;"> 
                           <i class="fas fa-users icon text-warning-lter"></i>
                           <span class="text-warning-lter">Our Team</span> 
                         </a> 

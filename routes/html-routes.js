@@ -18,7 +18,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/signin.html"));
   });
 
-  // app route loads app.html
+  // error route loads error.html
   app.get("/error", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/error.html"));
   });
@@ -26,5 +26,10 @@ module.exports = function(app) {
   // app route loads app.html
   app.get("/app", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/app.html"));
+  });
+
+  // profile route loads profile.html
+  app.get("/profile", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 };
