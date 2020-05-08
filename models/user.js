@@ -31,15 +31,15 @@ module.exports = function(sequelize, DataTypes) {
   User.prototype.validUserInfo = function(userinfo, pswd) {
     let result = false;
     if (!pswd){
-      console.log(`User info: ${userinfo}  -  Stored info: ${this.email}`)
+      // console.log(`User info: ${userinfo}  -  Stored info: ${this.email}`)
       result = userinfo.localeCompare(toString(this.email));
       if (!result){
-        console.log(`User info: ${userinfo}  -  Stored info: ${this.username}`)
+        // console.log(`User info: ${userinfo}  -  Stored info: ${this.username}`)
         result = userinfo.localeCompare(toString(this.username));
       }
     }
     else{
-      console.log(`User info: ${userinfo}  -  Stored info: ${this.password}`)
+      // console.log(`User info: ${userinfo}  -  Stored info: ${this.password}`)
       result = userinfo.localeCompare(toString(this.password));
     }
 

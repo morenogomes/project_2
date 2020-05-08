@@ -32,19 +32,20 @@ $(document).ready(function() {
   // POST method to the signup route. [Successful = Members page | Failed = 404 Page]
   function signUpUser(email, username, password) {
     $.post("/api/signup", {
-      email: email,
+      email:    email,
       username: username,
       password: password
     })
       .then(function(data) {
+        localStorage.setItem("anonymus", !data.username ? data.email : data.username);
         window.location.replace("/app");
       })
       .catch(handleLoginError);
   }
 
   function handleLoginError(err) {
-    // console.log(err);
-    // console.log(err.responseJSON);
+    localStorage.setItem("skullwarning", `${err.responseJSON.name}: ${err.responseJSON.errors[0].message}`);
+    localStorage.setItem("skullstatus", err.status);
     window.location.replace("/error");
   }
 });

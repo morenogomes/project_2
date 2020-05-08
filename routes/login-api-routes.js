@@ -9,18 +9,17 @@ var db = require("../models");
 module.exports = function(app) {
   // Sign Up Route: If the user is created successfully, proceed to log the user in, otherwise send back an error
   app.post("/api/signup", function(req, res) {
-    console.log(JSON.stringify(req.body))
-
     db.User.create({
       email:    req.body.email,
       username: req.body.username,
       password: req.body.password
     })
       .then(function() {
-        res.redirect(301, "/app"); 
+        res.json({email: req.body.email, username: req.body.username});
       })
       .catch(function(err) {
-        res.redirect(404, "/error");
+        res.status(401).json(err);
+        // res.redirect(404, "/error");
       });
   });
 
@@ -46,29 +45,27 @@ module.exports = function(app) {
       }
     }
 
-    console.log(condition)
-
     db.User.findOne(condition)
       .then(function(dbUser) {
         // If there's no user with the given email
         if (!dbUser.validUserInfo(user_email, false)) {
-          console.log("When a user tries to sign in: Incorrect email.");
+          console.log("Incorrect email.");
 
           // Redirect to Error page
-          res.redirect(404, "/error");
+          res.status(404).json(err);
         }
         // If there is a user with the given email, but the password the user gives us is incorrect
         else if (!dbUser.validUserInfo(user_password, true)) {
-          console.log("When a user tries to sign in: Incorrect password.");
+          console.log("Incorrect password.");
 
           // Redirect to Error page
-          res.redirect(404, "/error");
+          res.status(404).json(err);
         }
         else
           res.json(dbUser);
       })
       .catch(function(err) {
-        res.redirect(404, "/error");
+        res.status(404).json(err);
       });
   });
 
