@@ -17,7 +17,7 @@ module.exports = function(app) {
       password: req.body.password
     })
       .then(function() {
-        res.redirect(307, "/api/signin");
+        res.redirect(301, "/app"); 
       })
       .catch(function(err) {
         res.status(401).json(err);
