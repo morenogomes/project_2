@@ -1,5 +1,14 @@
 $(document).ready( function() {
-  
+  // Getting which user is Signed In (from localStorage) and updating the HTML
+  // =============================================================
+  $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
+                              <img src="images/p@icon2.jpg" alt="..."> 
+                              <i class="on b-white"></i> 
+                            </span>
+                            ${localStorage.getItem("anonymus")}`);
+
+  // Making object dynamics
+  // =============================================================
   // Function to collapse NavBar
   $(document).on('click','[data-toggle^="class"]', function(e){
     e && e.preventDefault();
@@ -40,6 +49,11 @@ $(document).ready( function() {
       $(document).trigger('updateNav');
     }, 300);
   });
+
+
+  // API Routes
+  // =============================================================
+  
 })
 
 //leeroy
