@@ -1,5 +1,5 @@
 {
-  "name": "Open-Sound",
+  "name": "open-sound-studio",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "bcryptjs": "2.4.3",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
@@ -20,6 +21,10 @@
     "node-spotify-api": "^1.1.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+=======
+    "express": "^4.17.0",
+    "mysql2": "^1.6.5",
+>>>>>>> 4f98e7a46fe87c50ebab10a6ff40b38b0d117a30
     "sequelize": "^5.8.6"
   }
 }

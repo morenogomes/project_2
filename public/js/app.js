@@ -41,3 +41,36 @@ $(document).ready( function() {
     }, 300);
   });
 })
+
+//leeroy
+
+function artitsSearch(userInput) {
+  var queryURL = baseURL + userInput;
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
+    console.log(response)
+  })
+}
+
+$('#artists').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+       console.log($('#artists').val());
+       artistSearch(userInput)
+    }
+});
+$('#songs').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+     console.log($('#songs').val());
+  }
+});
+$('#albums').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+     console.log($('#albums').val());
+  }
+});
