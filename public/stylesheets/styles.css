@@ -4036,6 +4036,12 @@ button.close{
   .modal-lg{width:900px;
   }
 }
+.centered-modal.in {
+  display: flex !important;
+}
+.centered-modal .modal-dialog {
+  margin: auto;
+}
 .tooltip{
   position:absolute;
   z-index:1030;
