@@ -90,31 +90,64 @@ $(document).ready( function() {
          //artistSearch(userInput)
       }
   });
+
   $('#songs').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-      //  console.log($('#songs').val());
-      let songsInput = $('#songs');
-      $.post("/api/searchartist", {
-       songs: songsInput.val().trim()
-     })
-       .then(function(data) {
-        //  console.log("We did it!!") // Please change this after!!
-       })
+       let songInput = $('#songs');
+       $.post("/api/searchsong", {
+        song: songInput.val().trim()
+      })
+        .then(function(data) {
+          console.log("Name of Song: ", data.tracks.items[0].name.toUpperCase());
+            console.log("Name of Artist: ", data.tracks.items[0].album.artists[0].name.toUpperCase());
+            console.log("Album Image: ", data.tracks.items[0].album.images[0].url);
+            console.log("Audio File: ", data.tracks.items[0].uri);
+        })
+       //artistSearch(userInput)
     }
-  });
-  $('#albums').keypress(function(event){
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
-      //  console.log($('#albums').val());
-      let albumsInput = $('#albums');
-      $.post("/api/searchartist", {
-       songs: songsInput.val().trim()
-     })
-       .then(function(data) {
-        //  console.log("We did it!!") // Please change this after!!
-       })
-    }
-  });
+});
+
+$('#albums').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+     let albumInput = $('#albums');
+     $.post("/api/searchalbum", {
+      album: albumInput.val().trim()
+    })
+      .then(function(data) {
+        console.log(data)
+        console.log("Name of Artist: ", data.albums.items[0].artists[0].name.toUpperCase());
+            console.log("Name of Album: ", data.albums.items[0].name.toUpperCase());
+            console.log("Name of Album: ", data.albums.items[0].images[0].url);
+      })
+  }
+});
+
+  // $('#songs').keypress(function(event){
+  //   var keycode = (event.keyCode ? event.keyCode : event.which);
+  //   if(keycode == '13'){
+  //     //  console.log($('#songs').val());
+  //     let songsInput = $('#songs');
+  //     $.post("/api/searchartist", {
+  //      songs: songsInput.val().trim()
+  //    })
+  //      .then(function(data) {
+  //      })
+  //   }
+  // });
+  // $('#albums').keypress(function(event){
+  //   var keycode = (event.keyCode ? event.keyCode : event.which);
+  //   if(keycode == '13'){
+  //     //  console.log($('#albums').val());
+  //     let albumsInput = $('#albums');
+  //     $.post("/api/searchartist", {
+  //      songs: songsInput.val().trim()
+  //    })
+  //      .then(function(data) {
+  //       //  console.log("We did it!!") // Please change this after!!
+  //      })
+  //   }
+  // });
   
 })
