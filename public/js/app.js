@@ -85,6 +85,7 @@ $(document).ready( function() {
             console.log("Name of Artist: ", data.artists.items[0].name.toUpperCase());
             console.log("Genre: ", data.artists.items[0].genres[0].toUpperCase());
             console.log("Artist Image: ", data.artists.items[0].images[0].url);
+            $('#artists').val('');
           })
          //artistSearch(userInput)
       }

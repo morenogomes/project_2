@@ -57,6 +57,9 @@ app.get('/api/album', (req, res) => {
     .request('https://api.spotify.com/v1/search?query=' + req.body.artist + '&type=artist&offset=0&limit=2')
     .then(function (response) {
         res.json(response);
-    })
+    }) .catch(function(err) {
+        res.status(401).json(err);
+        // res.redirect(404, "/error");
+      });
   });
 }
