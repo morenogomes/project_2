@@ -75,9 +75,4 @@ module.exports = function(app) {
     res.redirect("/signin");
   });
 
-  // Serach Artist Route
-  app.post("/api/searchartist", function(req, res) {
-    const user_artist = req.body.artist;
-    console.log(`user_artist = ${user_artist}`);
-  });
 };
