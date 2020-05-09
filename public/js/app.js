@@ -100,9 +100,10 @@ $(document).ready( function() {
       })
         .then(function(data) {
           console.log("Name of Song: ", data.tracks.items[0].name.toUpperCase());
-            console.log("Name of Artist: ", data.tracks.items[0].album.artists[0].name.toUpperCase());
-            console.log("Album Image: ", data.tracks.items[0].album.images[0].url);
-            console.log("Audio File: ", data.tracks.items[0].uri);
+          console.log("Name of Artist: ", data.tracks.items[0].album.artists[0].name.toUpperCase());
+          console.log("Album Image: ", data.tracks.items[0].album.images[0].url);
+          console.log("Audio File: ", data.tracks.items[0].uri);
+          $('#songs').val('');
         })
        //artistSearch(userInput)
     }
@@ -118,8 +119,9 @@ $('#albums').keypress(function(event){
       .then(function(data) {
         console.log(data)
         console.log("Name of Artist: ", data.albums.items[0].artists[0].name.toUpperCase());
-            console.log("Name of Album: ", data.albums.items[0].name.toUpperCase());
-            console.log("Name of Album: ", data.albums.items[0].images[0].url);
+        console.log("Name of Album: ", data.albums.items[0].name.toUpperCase());
+        console.log("Name of Album: ", data.albums.items[0].images[0].url);
+        $('#albums').val('');
       })
   }
 });
