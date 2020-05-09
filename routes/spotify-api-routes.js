@@ -85,6 +85,6 @@ module.exports = function(app) {
         res.status(401).json(err);
         // res.redirect(404, "/error");
       });
-    
+
   });
 }
