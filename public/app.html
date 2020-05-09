@@ -166,7 +166,7 @@
                         <div class="pos-rlt">
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="center text-center m-t-n">
-                              <a id="play_function" href="#">
+                              <a class="play_function" href="#">
                                 <i class="fas fa-play i-5x"></i>
                                 <i class="fas fa-pause i-5x"></i>
                               </a>
@@ -188,8 +188,9 @@
                         <div class="pos-rlt">
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="center text-center m-t-n">
-                              <a href="#">
+                              <a class="play_function" href="#">
                                 <i class="fas fa-play i-5x"></i>
+                                <i class="fas fa-pause i-5x"></i>
                               </a>
                             </div>
                           </div>
@@ -211,8 +212,9 @@
 
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="center text-center m-t-n">
-                              <a href="#">
+                              <a class="play_function" href="#">
                                 <i class="fas fa-play i-5x"></i>
+                                <i class="fas fa-pause i-5x"></i>
                               </a>
                             </div>
                           </div>
@@ -232,8 +234,9 @@
                         <div class="pos-rlt">
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="center text-center m-t-n">
-                              <a href="#">
+                              <a class="play_function" href="#">
                                 <i class="fas fa-play i-5x"></i>
+                                <i class="fas fa-pause i-5x"></i>
                               </a>
                             </div>
                           </div>
@@ -255,8 +258,9 @@
                         <div class="pos-rlt">
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="center text-center m-t-n">
-                              <a href="#">
+                              <a class="play_function" href="#">
                                 <i class="fas fa-play i-5x"></i>
+                                <i class="fas fa-pause i-5x"></i>
                               </a>
                             </div>
                           </div>
@@ -277,8 +281,9 @@
 
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="center text-center m-t-n">
-                              <a href="#">
+                              <a class="play_function" href="#">
                                 <i class="fas fa-play i-5x"></i>
+                                <i class="fas fa-pause i-5x"></i>
                               </a>
                             </div>
                           </div>
@@ -415,11 +420,11 @@
   <script>
     // spotify JS here
     let player;
-    let token = "BQB9TPs0i7WJwwnCCvXHlZ3ilcXQX4-bLMZDVPy7l9U4n1JNSaN_FAlnAMMlq8iQvI6go51EyuyJ83QFEuroBoQZOIVR1aAgYACFWj5tyHz2taITVlWWksV94yuJJu--fAZmsWu9nPo7VtdWXPlXLLyWdlr7-BvRDj2e";
+    let token = "BQC0vVzmfSbeK_Y3ph_h9Lpil85Sz_faYkgEwTXjYliXX21lbfZkCUntMz1JWFR94D_En265Sz6KBaY_7znmb_46O3f573ibEV_rndVZOglDJjYzgs-NN_oBhrXH3is4ZpxlquIhtrU3i0_M4OahEwYoT4_TMWmXvSMk";
     let isPlayerReady;
     let status = false
 
-    $('#play_function').on('click', function () {
+    $('.play_function').on('click', function () {
       if (status === false) {
         startPlayer();
         status = true
@@ -428,6 +433,20 @@
         });
       }
     })
+
+    // second player
+
+    $('#play_function2').on('click', function () {
+      if (status === false) {
+        startPlayer();
+        status = true
+      } else {
+        player.togglePlay().then(() => {
+        });
+      }
+    })
+
+    // second player
 
     onSpotifyWebPlaybackSDKReady = () => {
       isPlayerReady = true;
@@ -468,6 +487,7 @@
     };
 
   </script>
+
 </body>
 
 </html>
