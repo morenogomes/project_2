@@ -152,4 +152,68 @@ $('#albums').keypress(function(event){
   //   }
   // });
   
+  // Building Customized User Page Dynamically
+  // =============================================================
+  $("#playlist_1").on('click', function(e){
+    event.preventDefault();
+    $("#page-target").empty();
+    $("#page-target").css("background-color", "#F3F4F8");
+    $("#page-target").append(
+      `<h2 class="font-thin m-b">Playlist </h2>
+      <div class="row row-sm">
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="item">
+            <div class="pos-rlt">
+              <div class="item-overlay opacity r r-2x bg-black">
+                <i class="center text-center m-t-n far fa-question-circle i-5x"></i>
+              </div>
+              <a href="">
+                <img src="images/p_empty.jpg" alt="..." class="r r-2x img-full">
+              </a>
+            </div>
+            <div class="padder-v">
+              <a href="" class="text-ellipsis">? Song</a>
+              <a href="" class="text-ellipsis text-xs text-muted">? Artist</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7">
+          <h3 class="font-thin">Artists</h3>
+          <div class="row row-sm">
+            <div class="col-xs-6 col-sm-3">
+              <div class="item">
+                <div class="pos-rlt">
+                  <div class="item-overlay opacity r r-2x bg-black">
+                    <i class="center text-center m-t-n far fa-question-circle i-5x"></i>
+                  </div>
+                  <img src="images/p@icon_empty.jpg" alt="..." class="r r-2x img-full">
+                </div>
+                <div class="padder-v">
+                  <a href="" class="text-ellipsis">? Artist</a>
+                  <a href="" class="text-ellipsis text-xs text-muted">? Genre</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <h3 class="font-thin">Albums</h3>
+          <div class="list-group bg-white list-group-lg no-bg auto">
+            <div class="list-group-item clearfix">
+              <span class="pull-left thumb-sm avatar m-r">
+                <img src="images/p@icon_empty.jpg" alt="...">
+              </span>
+              <span class="clear">
+                <span>? Album</span>
+                <small class="text-muted clear text-ellipsis">? Artist</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>`
+    )
+  });
+  
 })
