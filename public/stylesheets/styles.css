@@ -7810,7 +7810,7 @@ a.bg-light:hover,a.bg-light:focus{
 }
 .item .center{
   position:absolute;
-  top:50%;
+  top:44%;
   left:0;
   right:0;
 }
@@ -8318,6 +8318,6 @@ a.bg-light:hover,a.bg-light:focus{
     transform: rotateY(360deg);
   }
 }
-#bjax-target{
+#page-target{
   background-color: #36b0c8;
 }
