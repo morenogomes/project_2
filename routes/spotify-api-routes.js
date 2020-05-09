@@ -27,17 +27,17 @@ app.get('/api/track', (req, res) => {
 
 })
 
-app.get('/api/artist', (req, res) => {
-    spotify
-        .request('https://api.spotify.com/v1/search?query=' + artist + '&type=artist&offset=0&limit=2')
-        .then(function (response) {
-            res.json(response);
-            console.log("Name of Artist: ", response.artists.items[0].name.toUpperCase());
-            console.log("Genre: ", response.artists.items[0].genres[0].toUpperCase());
-            console.log("Artist Image: ", response.artists.items[0].images[0].url);
-        })
+// app.get('/api/artist', (req, res) => {
+//     spotify
+//         .request('https://api.spotify.com/v1/search?query=' + artist + '&type=artist&offset=0&limit=2')
+//         .then(function (response) {
+//             res.json(response);
+//             console.log("Name of Artist: ", response.artists.items[0].name.toUpperCase());
+//             console.log("Genre: ", response.artists.items[0].genres[0].toUpperCase());
+//             console.log("Artist Image: ", response.artists.items[0].images[0].url);
+//         })
 
-})
+// })
 
 app.get('/api/album', (req, res) => {
     spotify
@@ -51,8 +51,12 @@ app.get('/api/album', (req, res) => {
 
 })
 
-// app.get('*', function (req, res) {
-//     res.sendFile(path.join(__dirname, "./public/error.html"));
-// });
-
+ // Serach Artist Route
+ app.post("/api/searchartist", function(req, res) {
+    spotify
+    .request('https://api.spotify.com/v1/search?query=' + req.body.artist + '&type=artist&offset=0&limit=2')
+    .then(function (response) {
+        res.json(response);
+    })
+  });
 }

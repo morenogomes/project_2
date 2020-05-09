@@ -80,7 +80,11 @@ $(document).ready( function() {
           artist: artistInput.val().trim()
         })
           .then(function(data) {
-            console.log("We did it!!") // Please change this after!!
+            // console.log("We did it!!") // Please change this after!!
+            // console.log("data spotify = ", JSON.stringify(data));
+            console.log("Name of Artist: ", data.artists.items[0].name.toUpperCase());
+            console.log("Genre: ", data.artists.items[0].genres[0].toUpperCase());
+            console.log("Artist Image: ", data.artists.items[0].images[0].url);
           })
          //artistSearch(userInput)
       }
@@ -88,13 +92,27 @@ $(document).ready( function() {
   $('#songs').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-       console.log($('#songs').val());
+      //  console.log($('#songs').val());
+      let songsInput = $('#songs');
+      $.post("/api/searchartist", {
+       songs: songsInput.val().trim()
+     })
+       .then(function(data) {
+        //  console.log("We did it!!") // Please change this after!!
+       })
     }
   });
   $('#albums').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-       console.log($('#albums').val());
+      //  console.log($('#albums').val());
+      let albumsInput = $('#albums');
+      $.post("/api/searchartist", {
+       songs: songsInput.val().trim()
+     })
+       .then(function(data) {
+        //  console.log("We did it!!") // Please change this after!!
+       })
     }
   });
   
