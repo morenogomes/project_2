@@ -57,38 +57,45 @@ $(document).ready( function() {
 
   // API Routes
   // =============================================================
+
+
+  // Leeroy
+  // function artitsSearch(userInput) {
+  //   var queryURL = baseURL + userInput;
   
-})
-
-//leeroy
-
-function artitsSearch(userInput) {
-  var queryURL = baseURL + userInput;
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response)
-  })
-}
-
-$('#artists').keypress(function(event){
+  //   $.ajax({
+  //     url: queryURL,
+  //     method: "GET"
+  //   }).then(function (response) {
+  //     console.log(response)
+  //   })
+  // }
+  
+  $('#artists').keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+        //  console.log($('#artists').val());
+         let artistInput = $('#artists');
+         $.post("/api/searchartist", {
+          artist: artistInput.val().trim()
+        })
+          .then(function(data) {
+            console.log("We did it!!") // Please change this after!!
+          })
+         //artistSearch(userInput)
+      }
+  });
+  $('#songs').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-       console.log($('#artists').val());
-       artistSearch(userInput)
+       console.log($('#songs').val());
     }
-});
-$('#songs').keypress(function(event){
-  var keycode = (event.keyCode ? event.keyCode : event.which);
-  if(keycode == '13'){
-     console.log($('#songs').val());
-  }
-});
-$('#albums').keypress(function(event){
-  var keycode = (event.keyCode ? event.keyCode : event.which);
-  if(keycode == '13'){
-     console.log($('#albums').val());
-  }
-});
+  });
+  $('#albums').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+       console.log($('#albums').val());
+    }
+  });
+  
+})
