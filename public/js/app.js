@@ -80,14 +80,27 @@ $(document).ready( function() {
           artist: artistInput.val().trim()
         })
           .then(function(data) {
-            // console.log("We did it!!") // Please change this after!!
-            // console.log("data spotify = ", JSON.stringify(data));
+
+            var Name = data.artists.items[0].name.toUpperCase()
+            var Genre = data.artists.items[0].genres[0].toUpperCase()
+            var userImage = (data.artists.items[0].images[0].url )
+            var $image = $("<img>").attr("src", userImage)
+           
+            var $Name = $('<div class="namer">' + Name + "</div >");
+            var $Genre = $('<div class="namer">' + Genre + "</div >");
+            
+            $image.css("height", "250px");
+            $image.css("width", "250px");
+
+            $("#name").append($Name) 
+            $("#tittle").append($Genre)
+            $('#img').append($image)
+
             console.log("Name of Artist: ", data.artists.items[0].name.toUpperCase());
             console.log("Genre: ", data.artists.items[0].genres[0].toUpperCase());
             console.log("Artist Image: ", data.artists.items[0].images[0].url);
             $('#artists').val('');
           })
-         //artistSearch(userInput)
       }
   });
 
@@ -99,6 +112,22 @@ $(document).ready( function() {
         song: songInput.val().trim()
       })
         .then(function(data) {
+
+          var Song = data.tracks.items[0].name.toUpperCase()
+          var artistName = data.tracks.items[0].album.artists[0].name.toUpperCase()
+          var albumCover = (data.tracks.items[0].album.images[0].url)
+          var $image = $("<img>").attr("src", albumCover)
+         
+          var $Name = $('<div class="namer">' + Song + "</div >");
+          var $Artist = $('<div class="namer">' + artistName + "</div >");
+          
+          $image.css("height", "250px");
+          $image.css("width", "250px");
+
+          $("#name").append($Name) 
+          $("#tittle").append($Artist)
+          $('#img').append($image)
+
           console.log("Name of Song: ", data.tracks.items[0].name.toUpperCase());
           console.log("Name of Artist: ", data.tracks.items[0].album.artists[0].name.toUpperCase());
           console.log("Album Image: ", data.tracks.items[0].album.images[0].url);
@@ -117,6 +146,22 @@ $('#albums').keypress(function(event){
       album: albumInput.val().trim()
     })
       .then(function(data) {
+
+        var Name = data.albums.items[0].artists[0].name.toUpperCase()
+        var album = data.albums.items[0].name.toUpperCase()
+        var userImage = (data.albums.items[0].images[0].url)
+        var $image = $("<img>").attr("src", userImage)
+       
+        var $Name = $('<div class="namer">' + Name + "</div >");
+        var $Album = $('<div class="namer">' + album + "</div >");
+        
+        $image.css("height", "250px");
+        $image.css("width", "250px");
+
+        $("#name").append($Name) 
+        $("#tittle").append($Album)
+        $('#img').append($image)
+
         console.log(data)
         console.log("Name of Artist: ", data.albums.items[0].artists[0].name.toUpperCase());
         console.log("Name of Album: ", data.albums.items[0].name.toUpperCase());
