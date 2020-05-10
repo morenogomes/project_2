@@ -1,4 +1,5 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css);
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap');
 
 /* @font-face{
   font-family:'FontAwesome';
@@ -7869,7 +7870,16 @@ a.bg-light:hover,a.bg-light:focus{
   margin-top: -12.5px;
 }
 .h_title{
+  /* font-family: "Raleway";
+  font-weight: 300; */
   font-size:125px;
+  text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+.h_title2{
+  /* font-family: "Raleway"; */
+  font-weight: 300;
+  font-size:90px;
   text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
   text-align: center;
 }
@@ -8256,6 +8266,8 @@ a.bg-light:hover,a.bg-light:focus{
   left:0;right:0; /* Aligns horizontal center */
   max-height:100%; /* images bigger than 175 px  */
   max-width:100%;  /* will be shrinked to size */
+  animation-duration: 5.5s;
+  animation-name: slidecubein;
 }
 .single-rb{
   width: 250px;
@@ -8319,5 +8331,44 @@ a.bg-light:hover,a.bg-light:focus{
   }
 }
 #page-target{
-  background-color: #36b0c8;
+  background-color: #6DD8E4;
+}
+#welcometo{
+  animation-duration: 1s;
+  animation-name: slidein;
+}
+#w-oss{
+  animation-duration: 1.5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    width: 300%; 
+  }
+
+  75% {
+    font-size: 300%;
+    margin-top: 25%;
+    width: 150%;
+  }
+
+  to {
+    margin-top: 0%;
+    width: 100%;
+  }
+}
+@keyframes slidecubein {
+  from {
+    margin-left: 29%;
+    margin-bottom: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 29%;
+    margin-bottom: 0%;
+    width: 100%;
+  }
 }
