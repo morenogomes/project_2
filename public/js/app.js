@@ -58,32 +58,23 @@ $(document).ready( function() {
   // Jquery Functions
   // =============================================================  
   $('#artists').keypress(function(event){
-      var keycode = (event.keyCode ? event.keyCode : event.which);
+      const keycode = (event.keyCode ? event.keyCode : event.which);
       if(keycode == '13'){
         $('#btn-search').click();
 
-        let artistInput = $('#artists');
         $.post("/api/searchartist", {
-          artist: artistInput.val().trim()
+          artist: $('#artists').val().trim()
         })
           .then(function(data) {
-
-            var Name      = data.artists.items[0].name.toUpperCase();
-            var Genre     = data.artists.items[0].genres[0].toUpperCase();
-            var userImage = (data.artists.items[0].images[0].url);
-            var $image    = $("<img>").attr("src", userImage).attr("style", "height: 250px; width: 250px");
-           
-            var $Name  = $(`<div class="namer"><b>Artist: </b><span>${Name}</span></div>`);
-            var $Genre = $(`<div class="namer"><i>Genre: <span>${Genre}</span></i></div>`);
-
+            const $name  = `<div class="namer"><b>Artist: </b><span>${data.artists.items[0].name.toUpperCase()}</span></div>`;
+            const $image = $("<img>").attr("src", data.artists.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
+            const $genre = `<div class="namer"><i>Genre: <span>${data.artists.items[0].genres[0].toUpperCase()}</span></i></div>`;
+ 
             // Removes previous search
-            $("#name").empty(); 
-            $('#img').empty();
-            $("#tittle").empty();
+            clearSearch();
 
-            $("#name").append($Name); 
-            $('#img').append($image);
-            $("#tittle").append($Genre);
+            // Appending the response from the API into the modal
+            appendResponse($name, $image, $genre);
 
             $('#artists').val('');
           })
@@ -91,70 +82,71 @@ $(document).ready( function() {
   });
 
   $('#songs').keypress(function(event){
-    var keycode = (event.keyCode ? event.keyCode : event.which);
+    const keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       $('#btn-search').click();
 
-      let songInput = $('#songs');
       $.post("/api/searchsong", {
-        song: songInput.val().trim()
+        song: $('#songs').val().trim()
       })
         .then(function(data) {
-
-          var Song       = data.tracks.items[0].name.toUpperCase();
-          var artistName = data.tracks.items[0].album.artists[0].name.toUpperCase();
-          var albumCover = (data.tracks.items[0].album.images[0].url);
-          var $image     = $("<img>").attr("src", albumCover).attr("style", "height: 250px; width: 250px");
-         
-          var $Name    = $(`<div class="namer"><b>Song: </b><span>${Song}</span></div>`);
-          var $Artist  = $(`<div class="namer"><b>Artist: </b><span>${artistName}</span></div>`);
+          const $name   = `<div class="namer"><b>Song: </b><span>${data.tracks.items[0].name.toUpperCase()}</span></div>`;
+          const $image  = $("<img>").attr("src", data.tracks.items[0].album.images[0].url).attr("style", "height: 250px; width: 250px");
+          const $artist = `<div class="namer"><b>Artist: </b><span>${data.tracks.items[0].album.artists[0].name.toUpperCase()}</span></div>`;
 
           // Removes previous search
-          $("#name").empty(); 
-          $('#img').empty();
-          $("#tittle").empty();
+          clearSearch();
 
-          $("#name").append($Name); 
-          $('#img').append($image);
-          $("#tittle").append($Artist);
+          // Appending the response from the API into the modal
+          appendResponse($name, $image, $artist);
 
           $('#songs').val('');
         })
     }
-});
+  });
 
-$('#albums').keypress(function(event){
-  var keycode = (event.keyCode ? event.keyCode : event.which);
-  if(keycode == '13'){
-    $('#btn-search').click();
+  $('#albums').keypress(function(event){
+    const keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      $('#btn-search').click();
 
-    let albumInput = $('#albums');
-    $.post("/api/searchalbum", {
-      album: albumInput.val().trim()
-    })
-      .then(function(data) {
-
-        var Name      = data.albums.items[0].artists[0].name.toUpperCase();
-        var album     = data.albums.items[0].name.toUpperCase();
-        var userImage = (data.albums.items[0].images[0].url);
-        var $image    = $("<img>").attr("src", userImage).attr("style", "height: 250px; width: 250px");
-       
-        var $Name   = $(`<div class="namer"><b>Artist: </b><span>${Name}</span></div>`);
-        var $Album  = $(`<div class="namer"><b>Album: </b><span>${album}</span></div>`);
-
-        // Removes previous search
-        $("#name").empty(); 
-        $('#img').empty();
-        $("#tittle").empty();
-
-        $("#name").append($Album); 
-        $('#img').append($image);
-        $("#tittle").append($Name);
-
-        $('#albums').val('');
+      $.post("/api/searchalbum", {
+        album: $('#albums').val().trim()
       })
+        .then(function(data) {
+          const $album = `<div class="namer"><b>Album: </b><span>${data.albums.items[0].name.toUpperCase()}</span></div>`;
+          const $image = $("<img>").attr("src", data.albums.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
+          const $name  = `<div class="namer"><b>Artist: </b><span>${data.albums.items[0].artists[0].name.toUpperCase()}</span></div>`;
+
+          // Removes previous search
+          clearSearch();
+
+          // Appending the response from the API into the modal
+          appendResponse($album, $image, $name);
+
+          $('#albums').val('');
+        })
+    }
+  });
+
+  $('#add-playlist').on('click', function(e){
+    // Informs if the information was added to the Playlist with success or Shows an error
+    // $('#btn-modal-response').click();
+  })
+
+  // General Jquery Functions
+  // ============================================================= 
+  function clearSearch() {
+    $("#name").empty(); 
+    $('#img').empty();
+    $("#tittle").empty();
   }
-});
+
+  function appendResponse(name, image, tittle){
+    $("#name").append(name); 
+    $('#img').append(image);
+    $("#tittle").append(tittle);
+  }
 
   
   // Building Customized User Page Dynamically
