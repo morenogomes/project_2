@@ -76,8 +76,9 @@
                       <ul class="nav dk text-sm">
                         <li>
                           <div class="auto">
-                            <input type="text" class="form-control input-sm no-border rounded" id="artists" onfocus="this.value=''" value=""
+                            <input type="text" class="form-control input-sm no-border rounded" style="display:inline-block;" id="artists" onfocus="this.value=''" value=""
                               placeholder="Search artists...">
+                            <span class="fas fa-search" id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
                           </div>
                         </li>
                       </ul>
@@ -96,6 +97,7 @@
                           <div class="auto">
                             <input type="text" class="form-control input-sm no-border rounded" id="songs"
                               placeholder="Search songs...">
+                            <span class="fas fa-search" id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
                           </div>
                         </li>
                       </ul>
@@ -114,6 +116,7 @@
                           <div class="auto">
                             <input type="text" class="form-control input-sm no-border rounded" id="albums"
                               placeholder="Search albums...">
+                            <span class="fas fa-search" id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
                           </div>
                         </li>
                       </ul>
@@ -163,24 +166,25 @@
 
 
                   <!-- Leeroy & Rodrigo Modal -->
-                  <div class="bs-example">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#OSmodal">
+                  <div class="bs-modal">
+                    <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#OSmodal">
                       MODAL OS
-                    </button>
+                    </button> -->
                     <div id="OSmodal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-dialog modal-sm modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Open Sound Studio</h4>
+                            <img src="images/os.png" alt="." style="height:30px;">
+                            <span class="m-l-sm">Open Sound Studio</span>
                           </div>
                           <div class="modal-body">
                             <h3 id="name"></h3>
-                            <h5 id="tittle"></h5>
                             <p id="img"></p>
+                            <h5 id="tittle"></h5>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-success">Add to Playlist!</button>
+                            <button type="button" class="btn btn-modal-os">Add to Playlist!</button>
                           </div>
                         </div>
                       </div>

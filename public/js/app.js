@@ -55,50 +55,36 @@ $(document).ready( function() {
   });
 
 
-  // API Routes
-  // =============================================================
-
-
-  // Leeroy
-  // function artitsSearch(userInput) {
-  //   var queryURL = baseURL + userInput;
-  
-  //   $.ajax({
-  //     url: queryURL,
-  //     method: "GET"
-  //   }).then(function (response) {
-  //     console.log(response)
-  //   })
-  // }
-  
+  // Jquery Functions
+  // =============================================================  
   $('#artists').keypress(function(event){
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if(keycode == '13'){
-        //  console.log($('#artists').val());
-         let artistInput = $('#artists');
-         $.post("/api/searchartist", {
+        $('#btn-search').click();
+
+        let artistInput = $('#artists');
+        $.post("/api/searchartist", {
           artist: artistInput.val().trim()
         })
           .then(function(data) {
 
-            var Name = data.artists.items[0].name.toUpperCase()
-            var Genre = data.artists.items[0].genres[0].toUpperCase()
-            var userImage = (data.artists.items[0].images[0].url )
-            var $image = $("<img>").attr("src", userImage)
+            var Name      = data.artists.items[0].name.toUpperCase();
+            var Genre     = data.artists.items[0].genres[0].toUpperCase();
+            var userImage = (data.artists.items[0].images[0].url);
+            var $image    = $("<img>").attr("src", userImage).attr("style", "height: 250px; width: 250px");
            
-            var $Name = $('<div class="namer">' + Name + "</div >");
-            var $Genre = $('<div class="namer">' + Genre + "</div >");
-            
-            $image.css("height", "250px");
-            $image.css("width", "250px");
+            var $Name  = $(`<div class="namer"><b>Artist: </b><span>${Name}</span></div>`);
+            var $Genre = $(`<div class="namer"><i>Genre: <span>${Genre}</span></i></div>`);
 
-            $("#name").append($Name) 
-            $("#tittle").append($Genre)
-            $('#img').append($image)
+            // Removes previous search
+            $("#name").empty(); 
+            $('#img').empty();
+            $("#tittle").empty();
 
-            console.log("Name of Artist: ", data.artists.items[0].name.toUpperCase());
-            console.log("Genre: ", data.artists.items[0].genres[0].toUpperCase());
-            console.log("Artist Image: ", data.artists.items[0].images[0].url);
+            $("#name").append($Name); 
+            $('#img').append($image);
+            $("#tittle").append($Genre);
+
             $('#artists').val('');
           })
       }
@@ -107,95 +93,69 @@ $(document).ready( function() {
   $('#songs').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-       let songInput = $('#songs');
-       $.post("/api/searchsong", {
+      $('#btn-search').click();
+
+      let songInput = $('#songs');
+      $.post("/api/searchsong", {
         song: songInput.val().trim()
       })
         .then(function(data) {
 
-          var Song = data.tracks.items[0].name.toUpperCase()
-          var artistName = data.tracks.items[0].album.artists[0].name.toUpperCase()
-          var albumCover = (data.tracks.items[0].album.images[0].url)
-          var $image = $("<img>").attr("src", albumCover)
+          var Song       = data.tracks.items[0].name.toUpperCase();
+          var artistName = data.tracks.items[0].album.artists[0].name.toUpperCase();
+          var albumCover = (data.tracks.items[0].album.images[0].url);
+          var $image     = $("<img>").attr("src", albumCover).attr("style", "height: 250px; width: 250px");
          
-          var $Name = $('<div class="namer">' + Song + "</div >");
-          var $Artist = $('<div class="namer">' + artistName + "</div >");
-          
-          $image.css("height", "250px");
-          $image.css("width", "250px");
+          var $Name    = $(`<div class="namer"><b>Song: </b><span>${Song}</span></div>`);
+          var $Artist  = $(`<div class="namer"><b>Artist: </b><span>${artistName}</span></div>`);
 
-          $("#name").append($Name) 
-          $("#tittle").append($Artist)
-          $('#img').append($image)
+          // Removes previous search
+          $("#name").empty(); 
+          $('#img').empty();
+          $("#tittle").empty();
 
-          console.log("Name of Song: ", data.tracks.items[0].name.toUpperCase());
-          console.log("Name of Artist: ", data.tracks.items[0].album.artists[0].name.toUpperCase());
-          console.log("Album Image: ", data.tracks.items[0].album.images[0].url);
-          console.log("Audio File: ", data.tracks.items[0].uri);
+          $("#name").append($Name); 
+          $('#img').append($image);
+          $("#tittle").append($Artist);
+
           $('#songs').val('');
         })
-       //artistSearch(userInput)
     }
 });
 
 $('#albums').keypress(function(event){
   var keycode = (event.keyCode ? event.keyCode : event.which);
   if(keycode == '13'){
-     let albumInput = $('#albums');
-     $.post("/api/searchalbum", {
+    $('#btn-search').click();
+
+    let albumInput = $('#albums');
+    $.post("/api/searchalbum", {
       album: albumInput.val().trim()
     })
       .then(function(data) {
 
-        var Name = data.albums.items[0].artists[0].name.toUpperCase()
-        var album = data.albums.items[0].name.toUpperCase()
-        var userImage = (data.albums.items[0].images[0].url)
-        var $image = $("<img>").attr("src", userImage)
+        var Name      = data.albums.items[0].artists[0].name.toUpperCase();
+        var album     = data.albums.items[0].name.toUpperCase();
+        var userImage = (data.albums.items[0].images[0].url);
+        var $image    = $("<img>").attr("src", userImage).attr("style", "height: 250px; width: 250px");
        
-        var $Name = $('<div class="namer">' + Name + "</div >");
-        var $Album = $('<div class="namer">' + album + "</div >");
-        
-        $image.css("height", "250px");
-        $image.css("width", "250px");
+        var $Name   = $(`<div class="namer"><b>Artist: </b><span>${Name}</span></div>`);
+        var $Album  = $(`<div class="namer"><b>Album: </b><span>${album}</span></div>`);
 
-        $("#name").append($Name) 
-        $("#tittle").append($Album)
-        $('#img').append($image)
+        // Removes previous search
+        $("#name").empty(); 
+        $('#img').empty();
+        $("#tittle").empty();
 
-        console.log(data)
-        console.log("Name of Artist: ", data.albums.items[0].artists[0].name.toUpperCase());
-        console.log("Name of Album: ", data.albums.items[0].name.toUpperCase());
-        console.log("Name of Album: ", data.albums.items[0].images[0].url);
+        $("#name").append($Album); 
+        $('#img').append($image);
+        $("#tittle").append($Name);
+
         $('#albums').val('');
       })
   }
 });
 
-  // $('#songs').keypress(function(event){
-  //   var keycode = (event.keyCode ? event.keyCode : event.which);
-  //   if(keycode == '13'){
-  //     //  console.log($('#songs').val());
-  //     let songsInput = $('#songs');
-  //     $.post("/api/searchartist", {
-  //      songs: songsInput.val().trim()
-  //    })
-  //      .then(function(data) {
-  //      })
-  //   }
-  // });
-  // $('#albums').keypress(function(event){
-  //   var keycode = (event.keyCode ? event.keyCode : event.which);
-  //   if(keycode == '13'){
-  //     //  console.log($('#albums').val());
-  //     let albumsInput = $('#albums');
-  //     $.post("/api/searchartist", {
-  //      songs: songsInput.val().trim()
-  //    })
-  //      .then(function(data) {
-  //       //  console.log("We did it!!") // Please change this after!!
-  //      })
-  //   }
-  // });
   
   // Building Customized User Page Dynamically
   // =============================================================
