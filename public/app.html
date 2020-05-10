@@ -78,7 +78,7 @@
                           <div class="auto">
                             <input type="text" class="form-control input-sm no-border rounded" style="display:inline-block;" id="artists" onfocus="this.value=''" value=""
                               placeholder="Search artists...">
-                            <span class="fas fa-search" id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
+                            <span id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
                           </div>
                         </li>
                       </ul>
@@ -97,7 +97,7 @@
                           <div class="auto">
                             <input type="text" class="form-control input-sm no-border rounded" id="songs"
                               placeholder="Search songs...">
-                            <span class="fas fa-search" id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
+                            <span id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
                           </div>
                         </li>
                       </ul>
@@ -116,7 +116,7 @@
                           <div class="auto">
                             <input type="text" class="form-control input-sm no-border rounded" id="albums"
                               placeholder="Search albums...">
-                            <span class="fas fa-search" id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
+                            <span id="btn-search" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span>
                           </div>
                         </li>
                       </ul>
@@ -184,7 +184,8 @@
                             <h5 id="tittle"></h5>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-modal-os">Add to Playlist!</button>
+                            <button type="button" id="add-playlist" class="btn btn-modal-os" data-dismiss="modal">Add to Playlist!</button>
+                            <!-- <span id="btn-modal-response" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span> -->
                           </div>
                         </div>
                       </div>
