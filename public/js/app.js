@@ -1,4 +1,9 @@
 $(document).ready( function() {
+  const SONG   = 1;
+  const ARTIST = 2;
+  const ALBUM  = 3;
+  let playlistInfo;
+
   // Getting which user is Signed In (from localStorage) and updating the HTML
   // =============================================================
   $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
@@ -58,30 +63,40 @@ $(document).ready( function() {
   // Jquery Functions
   // =============================================================  
   $('#artists').keypress(function(event){
-      const keycode = (event.keyCode ? event.keyCode : event.which);
-      if(keycode == '13'){
-        $('#btn-search').click();
+    playlistInfo  = ''; // Important!! Always clear the variable
+    const keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      $('#btn-search').click();
 
-        $.post("/api/searchartist", {
-          artist: $('#artists').val().trim()
-        })
-          .then(function(data) {
-            const $name  = `<div class="namer"><b>Artist: </b><span>${data.artists.items[0].name.toUpperCase()}</span></div>`;
-            const $image = $("<img>").attr("src", data.artists.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
-            const $genre = `<div class="namer"><i>Genre: <span>${data.artists.items[0].genres[0].toUpperCase()}</span></i></div>`;
+      $.post("/api/searchartist", {
+        artist: $('#artists').val().trim()
+      })
+        .then(function(data) {
+          const $name  = `<div class="namer"><b>Artist: </b><span>${data.artists.items[0].name.toUpperCase()}</span></div>`;
+          const $image = $("<img>").attr("src", data.artists.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
+          const $genre = `<div class="namer"><i>Genre: <span>${data.artists.items[0].genres[0].toUpperCase()}</span></i></div>`;
  
-            // Removes previous search
-            clearSearch();
+          // Global object that will hold the information of user's search
+          playlistInfo = {
+            type   : ARTIST,
+            field1 : data.artists.items[0].name.toUpperCase(),
+            field2 : data.artists.items[0].images[0].url,
+            field3 : data.artists.items[0].genres[0].toUpperCase()
+          }
+          
+          // Removes previous search
+          clearSearch();
 
-            // Appending the response from the API into the modal
-            appendResponse($name, $image, $genre);
+          // Appending the response from the API into the modal
+          appendResponse($name, $image, $genre);
 
-            $('#artists').val('');
-          })
+          $('#artists').val('');
+        })
       }
   });
 
   $('#songs').keypress(function(event){
+    playlistInfo  = ''; // Important!! Always clear the variable
     const keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       $('#btn-search').click();
@@ -93,6 +108,15 @@ $(document).ready( function() {
           const $name   = `<div class="namer"><b>Song: </b><span>${data.tracks.items[0].name.toUpperCase()}</span></div>`;
           const $image  = $("<img>").attr("src", data.tracks.items[0].album.images[0].url).attr("style", "height: 250px; width: 250px");
           const $artist = `<div class="namer"><b>Artist: </b><span>${data.tracks.items[0].album.artists[0].name.toUpperCase()}</span></div>`;
+
+          // Global object that will hold the information of user's search
+          playlistInfo = {
+            type   : SONG,
+            field1 : data.tracks.items[0].name.toUpperCase(),
+            field2 : data.tracks.items[0].album.artists[0].name.toUpperCase(),
+            field3 : data.tracks.items[0].album.images[0].url,
+            field4 : data.tracks.items[0].uri
+          }
 
           // Removes previous search
           clearSearch();
@@ -106,6 +130,7 @@ $(document).ready( function() {
   });
 
   $('#albums').keypress(function(event){
+    playlistInfo  = ''; // Important!! Always clear the variable
     const keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       $('#btn-search').click();
@@ -117,6 +142,14 @@ $(document).ready( function() {
           const $album = `<div class="namer"><b>Album: </b><span>${data.albums.items[0].name.toUpperCase()}</span></div>`;
           const $image = $("<img>").attr("src", data.albums.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
           const $name  = `<div class="namer"><b>Artist: </b><span>${data.albums.items[0].artists[0].name.toUpperCase()}</span></div>`;
+
+          // Global object that will hold the information of user's search
+          playlistInfo = {
+            type   : ALBUM,
+            field1 : data.albums.items[0].name.toUpperCase(),
+            field2 : data.albums.items[0].images[0].url,
+            field3 : data.albums.items[0].artists[0].name.toUpperCase()
+          }
 
           // Removes previous search
           clearSearch();
@@ -130,8 +163,15 @@ $(document).ready( function() {
   });
 
   $('#add-playlist').on('click', function(e){
-    // Informs if the information was added to the Playlist with success or Shows an error
-    // $('#btn-modal-response').click();
+    // POST method to the add-playlist route. [Successful = Playlist page | Failed = 404 Page]
+    $.post("/api/addplaylist", playlistInfo)
+      .then(function() {
+        $("#playlist_1").click(); // IDK why is not working?! - Please take a look at this!!
+
+        // Informs if the information was added to the Playlist with success or Shows an error
+        // $('#btn-modal-response').click();
+      })
+      .catch(handleAddPlaylistError);
   })
 
   // General Jquery Functions
@@ -148,6 +188,11 @@ $(document).ready( function() {
     $("#tittle").append(tittle);
   }
 
+  function handleAddPlaylistError(err) {
+    !err.responseJSON.name ? localStorage.setItem("skullwarning", (err.statusText).toUpperCase()) : localStorage.setItem("skullwarning", `${err.responseJSON.name}: ${err.responseJSON.errors[0].message}`);
+    localStorage.setItem("skullstatus", err.status);
+    window.location.replace("/error");
+  }
   
   // Building Customized User Page Dynamically
   // =============================================================
