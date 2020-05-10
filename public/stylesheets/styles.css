@@ -8372,3 +8372,12 @@ a.bg-light:hover,a.bg-light:focus{
     width: 100%;
   }
 }
+
+.btn-modal-os{
+  color:#fff;
+  background-color:#4CC0D3;
+}
+.btn-modal-os:hover{
+  color:#fff;
+  background-color:#36b0c8;
+}
