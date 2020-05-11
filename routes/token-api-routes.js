@@ -1,38 +1,51 @@
-var request = require('request');
-var express = require('express');
-var app = express();
+let express = require('express')
+let request = require('request')
+let querystring = require('querystring')
 
-app.set('port', process.env.PORT || 8080);
+let app = express()
 
-app.get('/token', function(req, resp) {
-  resp.header('Access-Control-Allow-Origin', '*');
-  resp.header('Access-Control-Allow-Headers', 'X-Requested-With');
+let PORT = 8888;
 
-  var client_id = '96cba94b0188420d9b0947302e101419';
-  var client_secret = 'd6d4076155934e91b382b9d192b9bd3d';
+const SPOTIFY_CLIENT_ID = '24fbfc849b2a46f792a66d56d872ef90'
+const SPOTIFY_CLIENT_SECRET = '588bae3a74e54732ae52026bf86257bc'
 
-  // your application requests authorization
-  var authOptions = {
+let redirect_uri = 
+  process.env.REDIRECT_URI || 
+  'http://localhost:8888/callback'
+
+app.get('/login', function(req, res) {
+  res.redirect('https://accounts.spotify.com/authorize?' +
+    querystring.stringify({
+      response_type: 'code',
+      client_id: SPOTIFY_CLIENT_ID,
+      scope: 'user-read-private user-read-email',
+      redirect_uri
+    }))
+})
+
+app.get('/callback', function(req, res) {
+  let code = req.query.code || null
+  let authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: {
-      Authorization:
-        'Basic ' +
-        new Buffer(client_id + ':' + client_secret).toString('base64')
-    },
     form: {
-      grant_type: 'client_credentials'
+      code: code,
+      redirect_uri,
+      grant_type: 'authorization_code'
+    },
+    headers: {
+      'Authorization': 'Basic ' + (Buffer.from(
+        SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET
+      ).toString('base64'))
     },
     json: true
-  };
-
+  }
   request.post(authOptions, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      resp.json({ token: body.access_token });
-      console.log('Here is the new token: ', body.access_token)
-    }
-  });
-});
+    var access_token = body.access_token
+    let uri = process.env.FRONTEND_URI || 'http://localhost:8080'
+    res.redirect(uri + '?access_token=' + access_token)
+  })
+})
 
-app.listen(app.get('port'), function() {
-  console.log('App listening on http://localhost:' + app.get('port') + '/token');
+app.listen(PORT, function() {
+  console.log(`App listening on http://localhost:${PORT}`);
 });
