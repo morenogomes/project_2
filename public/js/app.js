@@ -166,8 +166,9 @@ $(document).ready( function() {
     // POST method to the add-playlist route. [Successful = Playlist page | Failed = 404 Page]
     $.post("/api/addplaylist", playlistInfo)
       .then(function(data) {
+        e.preventDefault();
         // Check if database has any data
-        verifyDatabase(e);
+        verifyDatabase();
 
         // Informs if the information was added to the Playlist with success or Shows an error
         // $('#btn-modal-response').click();
@@ -198,37 +199,31 @@ $(document).ready( function() {
   // Building Customized User Page Dynamically
   // =============================================================
   $("#playlist_1").on('click', function(e){
+    e.preventDefault();
     // Check if database has any data
-    verifyDatabase(e);
+    verifyDatabase();
   });
 
-  function verifyDatabase(e){
-    $.post("/api/playlist", {
-      // email:    email,
-      // password: password
-    })
-      .then(function(data) {
-        // localStorage.setItem("anonymus", !data.username ? data.email : data.username);
-        // window.location.replace("/app");
+  function verifyDatabase(){
+    $.get("/api/playlist", function(playlistData) {
+      $.get("/api/artist", function(artistData) {
+        $.get("/api/album", function(albumData) {
+
+          // Check if database has any data
+          jQuery.isEmptyObject(playlistData) && jQuery.isEmptyObject(artistData) && jQuery.isEmptyObject(albumData) ? loadDefaultPlaylist() : loadPlaylist(playlistData, artistData, albumData);
+        })
       })
-
-
-
-
-
-
-    //loadDefaultPlaylist(e);
-    // loadPlaylist(e);
+    })
   }
 
-  function initialSettings(e) {
-    e.preventDefault();
+  function initialSettings() {
+    //e.preventDefault();
     $("#page-target").empty();
     $("#page-target").css("background-color", "#F3F4F8");
   }
 
-  function loadDefaultPlaylist(e) {
-    initialSettings(e);
+  function loadDefaultPlaylist() {
+    initialSettings();
     
     $("#page-target").append(
       `<h2 class="font-thin m-b">Playlist </h2>
@@ -288,237 +283,85 @@ $(document).ready( function() {
     )
   }
 
-  function loadPlaylist(e) {
-    initialSettings(e);
+  function loadPlaylist(...osTable) {
+    initialSettings();
 
-    $("#page-target").append(
-      `<h2 class="font-thin m-b">Playlist </h2>
-      <div class="row row-sm">
+    // Loads Playlist 
+    $("#page-target").append(`<h2 class="font-thin m-b">Playlist </h2>
+                              <div class="row row-sm" id="playlist-row"></div>`
+                            );
+    osTable[0].forEach((element, index) => {
+      $("#playlist-row").append(`<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                                    <div class="item">
+                                      <div class="pos-rlt">
+                                        <div class="item-overlay opacity r r-2x bg-black">
+                                          <div class="center text-center m-t-n">
+                                            <a class="play_function" href="">
+                                              <span id="uri-track-${index}" style="display: none;">${element.trackURI}</span>
+                                              <i class="fas fa-play i-5x"></i>
+                                              <i class="fas fa-pause i-5x"></i>
+                                            </a>
+                                          </div>
+                                        </div>
+                                        <a href="">
+                                          <img src="${element.albumImage}" alt="albumImage" class="r r-2x img-full">
+                                        </a>
+                                      </div>
+                                      <div class="padder-v">
+                                        <a href="" class="text-ellipsis">${element.songName}</a>
+                                        <a href="" class="text-ellipsis text-xs text-muted">${element.artistName}</a>
+                                      </div>
+                                    </div>
+                                  </div>`
+                                );
 
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <div class="item">
-            <div class="pos-rlt">
-              <div class="item-overlay opacity r r-2x bg-black">
-                <div class="center text-center m-t-n">
-                  <a class="play_function" href="#">
-                    <i class="fas fa-play i-5x"></i>
-                    <i class="fas fa-pause i-5x"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="">
-                <img src="images/p.jpg" alt="" class="r r-2x img-full">
-              </a>
-            </div>
-            <div class="padder-v">
-              <a href="" class="text-ellipsis">Song #001</a>
-              <a href="" class="text-ellipsis text-xs text-muted">Artist #001</a>
-            </div>
-          </div>
-        </div>
+      if((index + 1) % 2 === 0) {
+        $("#playlist-row").append(`<div class="clearfix visible-xs"></div>`)
+      }
+    });
 
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <div class="item">
-            <div class="pos-rlt">
-              <div class="item-overlay opacity r r-2x bg-black">
-                <div class="center text-center m-t-n">
-                  <a class="play_function" href="#">
-                    <i class="fas fa-play i-5x"></i>
-                    <i class="fas fa-pause i-5x"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="">
-                <img src="images/p.jpg" alt="" class="r r-2x img-full">
-              </a>
-            </div>
-            <div class="padder-v">
-              <a href="" class="text-ellipsis">Song #002</a>
-              <a href="" class="text-ellipsis text-xs text-muted">Artist #002</a>
-            </div>
-          </div>
-        </div>
+    // Artist and Album 
+    $("#page-target").append(`<div class="row">
+                                <div class="col-md-7">
+                                  <h3 class="font-thin">Artists</h3>
+                                  <div class="row row-sm" id="artist-row"></div>
+                                </div>
+                                <div class="col-md-5">
+                                  <h3 class="font-thin">Albums</h3>
+                                  <div class="list-group bg-white list-group-lg no-bg auto" id="album-row"></div>
+                                </div>
+                              </div>`
+                            );
 
-        <div class="clearfix visible-xs"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <div class="item">
-            <div class="pos-rlt">
+    // Loads Artist
+    osTable[1].forEach(element => {
+      $("#artist-row").append(`<div class="col-xs-6 col-sm-3">
+                                  <div class="item">
+                                    <div class="pos-rlt">
+                                      <img src="${element.artistImage}" alt="artistImage" class="r r-2x img-full">
+                                    </div>
+                                    <div class="padder-v">
+                                      <a href="" class="text-ellipsis">${element.artistName}</a>
+                                      <a href="" class="text-ellipsis text-xs text-muted">${element.genre}</a>
+                                    </div>
+                                  </div>
+                                </div>`
+                              );
+    });
 
-              <div class="item-overlay opacity r r-2x bg-black">
-                <div class="center text-center m-t-n">
-                  <a class="play_function" href="#">
-                    <i class="fas fa-play i-5x"></i>
-                    <i class="fas fa-pause i-5x"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="">
-                <img src="images/p.jpg" alt="" class="r r-2x img-full">
-              </a>
-            </div>
-            <div class="padder-v">
-              <a href="" class="text-ellipsis">Song #003</a>
-              <a href="" class="text-ellipsis text-xs text-muted">Artist #003</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <div class="item">
-            <div class="pos-rlt">
-              <div class="item-overlay opacity r r-2x bg-black">
-                <div class="center text-center m-t-n">
-                  <a class="play_function" href="#">
-                    <i class="fas fa-play i-5x"></i>
-                    <i class="fas fa-pause i-5x"></i>
-                  </a>
-                </div>
-              </div>
-
-              <a href="">
-                <img src="images/p.jpg" alt="" class="r r-2x img-full">
-              </a>
-            </div>
-            <div class="padder-v">
-              <a href="" class="text-ellipsis">Song #004</a>
-              <a href="" class="text-ellipsis text-xs text-muted">Artist #004</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="clearfix visible-xs"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <div class="item">
-            <div class="pos-rlt">
-              <div class="item-overlay opacity r r-2x bg-black">
-                <div class="center text-center m-t-n">
-                  <a class="play_function" href="#">
-                    <i class="fas fa-play i-5x"></i>
-                    <i class="fas fa-pause i-5x"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="">
-                <img src="images/p.jpg" alt="" class="r r-2x img-full">
-              </a>
-            </div>
-            <div class="padder-v">
-              <a href="" class="text-ellipsis">Song #005</a>
-              <a href="" class="text-ellipsis text-xs text-muted">Artist #005</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-          <div class="item">
-            <div class="pos-rlt">
-
-              <div class="item-overlay opacity r r-2x bg-black">
-                <div class="center text-center m-t-n">
-                  <a class="play_function" href="#">
-                    <i class="fas fa-play i-5x"></i>
-                    <i class="fas fa-pause i-5x"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="">
-                <img src="images/p.jpg" alt="" class="r r-2x img-full">
-              </a>
-            </div>
-            <div class="padder-v">
-              <a href="" class="text-ellipsis">Song #006</a>
-              <a href="" class="text-ellipsis text-xs text-muted">Artist #006</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="col-md-7">
-          <h3 class="font-thin">Artists</h3>
-          <div class="row row-sm">
-            <div class="col-xs-6 col-sm-3">
-              <div class="item">
-                <div class="pos-rlt">
-                  <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                </div>
-                <div class="padder-v">
-                  <a href="" class="text-ellipsis">Artist #001</a>
-                  <a href="" class="text-ellipsis text-xs text-muted">Genre #001</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-              <div class="item">
-                <div class="pos-rlt">
-                  <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                </div>
-                <div class="padder-v">
-                  <a href="" class="text-ellipsis">Artist #002</a>
-                  <a href="" class="text-ellipsis text-xs text-muted">Genre #002</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-              <div class="item">
-                <div class="pos-rlt">
-                  <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                </div>
-                <div class="padder-v">
-                  <a href="" class="text-ellipsis">Artist #003</a>
-                  <a href="" class="text-ellipsis text-xs text-muted">Genre #003</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-              <div class="item">
-                <div class="pos-rlt">
-                  <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                </div>
-                <div class="padder-v">
-                  <a href="" class="text-ellipsis">Artist #004</a>
-                  <a href="" class="text-ellipsis text-xs text-muted">Genre #004</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-5">
-          <h3 class="font-thin">Albums</h3>
-          <div class="list-group bg-white list-group-lg no-bg auto">
-            <div class="list-group-item clearfix">
-              <span class="pull-left thumb-sm avatar m-r">
-                <img src="images/p@icon.jpg" alt="...">
-              </span>
-              <span class="clear">
-                <span>Album #001</span>
-                <small class="text-muted clear text-ellipsis">Artist #001</small>
-              </span>
-            </div>
-            <div class="list-group-item clearfix">
-              <span class="pull-left thumb-sm avatar m-r">
-                <img src="images/p@icon.jpg" alt="...">
-              </span>
-              <span class="clear">
-                <span>Album #002</span>
-                <small class="text-muted clear text-ellipsis">Artist #002</small>
-              </span>
-            </div>
-            <div class="list-group-item clearfix">
-              <span class="pull-left thumb-sm avatar m-r">
-                <img src="images/p@icon.jpg" alt="...">
-              </span>
-              <span class="clear">
-                <span>Album #003</span>
-                <small class="text-muted clear text-ellipsis">Artist #003</small>
-              </span>
-            </div>
-
-          </div>
-        </div>
-      </div>`
-    )
+    // Loads Album
+    osTable[2].forEach(element => {
+      $("#album-row").append(`<div class="list-group-item clearfix">
+                                <span class="pull-left thumb-sm avatar m-r">
+                                  <img src="${element.albumImage}" alt="albumImage">
+                                </span>
+                                <span class="clear">
+                                  <span>${element.albumName}</span>
+                                  <small class="text-muted clear text-ellipsis">${element.artistName}</small>
+                                </span>
+                              </div>`
+                            );
+    });
   }
   
 })
