@@ -161,48 +161,37 @@
           <section class="hbox stretch">
             <section>
               <section class="vbox">
-                <section class="scrollable padder-lg w-f-md" id="page-target">
-
-
-
-                  <!-- Leeroy & Rodrigo Modal -->
-                  <div class="bs-modal">
-                    <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#OSmodal">
-                      MODAL OS
-                    </button> -->
-                    <div id="OSmodal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-sm modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <img src="images/os.png" alt="." style="height:30px;">
-                            <span class="m-l-sm">Open Sound Studio</span>
-                          </div>
-                          <div class="modal-body">
-                            <h3 id="name"></h3>
-                            <p id="img"></p>
-                            <h5 id="tittle"></h5>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" id="add-playlist" class="btn btn-modal-os" data-dismiss="modal">Add to Playlist!</button>
-                            <!-- <span id="btn-modal-response" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span> -->
-                          </div>
+                <!-- Modal -->
+                <div class="bs-modal">
+                  <div id="OSmodal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <img src="images/os.png" alt="." style="height:30px;">
+                          <span class="m-l-sm">Open Sound Studio</span>
+                        </div>
+                        <div class="modal-body">
+                          <h3 id="name"></h3>
+                          <p id="img"></p>
+                          <h5 id="tittle"></h5>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="add-playlist" class="btn btn-modal-os" data-dismiss="modal">Add to Playlist!</button>
+                          <!-- <span id="btn-modal-response" data-toggle="modal" data-target="#OSmodal" style="display: none;"></span> -->
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+                </div>
+                <section class="scrollable padder-lg w-f-md" id="page-target">
 
-
-
-                  <!-- Rodrigo -->
-                  <!-- First Main Page -->
+                  <!-- Welcome Page -->
                   <div class="text">
                     <h1 id="welcometo" class="h_title2 text-white">Welcome to</h1>
                     <br>
                     <h1 id="w-oss" class="h_title text-white">Open Sound Studio</h1>
                   </div>
-
                   <div class="rotating-box">
                     <div class="single-rb">
                       <div class="front-side">
@@ -230,249 +219,6 @@
                     </div>
                   </div>
 
-
-
-
-
-
-
-                  <!-- <h2 class="font-thin m-b">Playlist </h2>
-                  <div class="row row-sm">
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                      <div class="item">
-                        <div class="pos-rlt">
-                          <div class="item-overlay opacity r r-2x bg-black">
-                            <div class="center text-center m-t-n">
-                              <a class="play_function" href="#">
-                                <i class="fas fa-play i-5x"></i>
-                                <i class="fas fa-pause i-5x"></i>
-                              </a>
-                            </div>
-                          </div>
-                          <a href="">
-                            <img src="images/p.jpg" alt="" class="r r-2x img-full">
-                          </a>
-                        </div>
-                        <div class="padder-v">
-                          <a href="" class="text-ellipsis">Song #001</a>
-                          <a href="" class="text-ellipsis text-xs text-muted">Artist #001</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                      <div class="item">
-                        <div class="pos-rlt">
-                          <div class="item-overlay opacity r r-2x bg-black">
-                            <div class="center text-center m-t-n">
-                              <a class="play_function" href="#">
-                                <i class="fas fa-play i-5x"></i>
-                                <i class="fas fa-pause i-5x"></i>
-                              </a>
-                            </div>
-                          </div>
-                          <a href="">
-                            <img src="images/p.jpg" alt="" class="r r-2x img-full">
-                          </a>
-                        </div>
-                        <div class="padder-v">
-                          <a href="" class="text-ellipsis">Song #002</a>
-                          <a href="" class="text-ellipsis text-xs text-muted">Artist #002</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="clearfix visible-xs"></div>
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                      <div class="item">
-                        <div class="pos-rlt">
-
-                          <div class="item-overlay opacity r r-2x bg-black">
-                            <div class="center text-center m-t-n">
-                              <a class="play_function" href="#">
-                                <i class="fas fa-play i-5x"></i>
-                                <i class="fas fa-pause i-5x"></i>
-                              </a>
-                            </div>
-                          </div>
-                          <a href="">
-                            <img src="images/p.jpg" alt="" class="r r-2x img-full">
-                          </a>
-                        </div>
-                        <div class="padder-v">
-                          <a href="" class="text-ellipsis">Song #003</a>
-                          <a href="" class="text-ellipsis text-xs text-muted">Artist #003</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                      <div class="item">
-                        <div class="pos-rlt">
-                          <div class="item-overlay opacity r r-2x bg-black">
-                            <div class="center text-center m-t-n">
-                              <a class="play_function" href="#">
-                                <i class="fas fa-play i-5x"></i>
-                                <i class="fas fa-pause i-5x"></i>
-                              </a>
-                            </div>
-                          </div>
-
-                          <a href="">
-                            <img src="images/p.jpg" alt="" class="r r-2x img-full">
-                          </a>
-                        </div>
-                        <div class="padder-v">
-                          <a href="" class="text-ellipsis">Song #004</a>
-                          <a href="" class="text-ellipsis text-xs text-muted">Artist #004</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="clearfix visible-xs"></div>
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                      <div class="item">
-                        <div class="pos-rlt">
-                          <div class="item-overlay opacity r r-2x bg-black">
-                            <div class="center text-center m-t-n">
-                              <a class="play_function" href="#">
-                                <i class="fas fa-play i-5x"></i>
-                                <i class="fas fa-pause i-5x"></i>
-                              </a>
-                            </div>
-                          </div>
-                          <a href="">
-                            <img src="images/p.jpg" alt="" class="r r-2x img-full">
-                          </a>
-                        </div>
-                        <div class="padder-v">
-                          <a href="" class="text-ellipsis">Song #005</a>
-                          <a href="" class="text-ellipsis text-xs text-muted">Artist #005</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                      <div class="item">
-                        <div class="pos-rlt">
-
-                          <div class="item-overlay opacity r r-2x bg-black">
-                            <div class="center text-center m-t-n">
-                              <a class="play_function" href="#">
-                                <i class="fas fa-play i-5x"></i>
-                                <i class="fas fa-pause i-5x"></i>
-                              </a>
-                            </div>
-                          </div>
-                          <a href="">
-                            <img src="images/p.jpg" alt="" class="r r-2x img-full">
-                          </a>
-                        </div>
-                        <div class="padder-v">
-                          <a href="" class="text-ellipsis">Song #006</a>
-                          <a href="" class="text-ellipsis text-xs text-muted">Artist #006</a>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row">
-                    <div class="col-md-7">
-                      <h3 class="font-thin">Artists</h3>
-                      <div class="row row-sm">
-                        <div class="col-xs-6 col-sm-3">
-                          <div class="item">
-                            <div class="pos-rlt">
-                              <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                            </div>
-                            <div class="padder-v">
-                              <a href="" class="text-ellipsis">Artist #001</a>
-                              <a href="" class="text-ellipsis text-xs text-muted">Genre #001</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-3">
-                          <div class="item">
-                            <div class="pos-rlt">
-                              <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                            </div>
-                            <div class="padder-v">
-                              <a href="" class="text-ellipsis">Artist #002</a>
-                              <a href="" class="text-ellipsis text-xs text-muted">Genre #002</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-3">
-                          <div class="item">
-                            <div class="pos-rlt">
-                              <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                            </div>
-                            <div class="padder-v">
-                              <a href="" class="text-ellipsis">Artist #003</a>
-                              <a href="" class="text-ellipsis text-xs text-muted">Genre #003</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-3">
-                          <div class="item">
-                            <div class="pos-rlt">
-                              <img src="images/p@icon.jpg" alt="" class="r r-2x img-full">
-                            </div>
-                            <div class="padder-v">
-                              <a href="" class="text-ellipsis">Artist #004</a>
-                              <a href="" class="text-ellipsis text-xs text-muted">Genre #004</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-5">
-                      <h3 class="font-thin">Albums</h3>
-                      <div class="list-group bg-white list-group-lg no-bg auto">
-                        <div class="list-group-item clearfix">
-                          <span class="pull-left thumb-sm avatar m-r">
-                            <img src="images/p@icon.jpg" alt="...">
-                          </span>
-                          <span class="clear">
-                            <span>Album #001</span>
-                            <small class="text-muted clear text-ellipsis">Artist #001</small>
-                          </span>
-                        </div>
-                        <div class="list-group-item clearfix">
-                          <span class="pull-left thumb-sm avatar m-r">
-                            <img src="images/p@icon.jpg" alt="...">
-                          </span>
-                          <span class="clear">
-                            <span>Album #002</span>
-                            <small class="text-muted clear text-ellipsis">Artist #002</small>
-                          </span>
-                        </div>
-                        <div class="list-group-item clearfix">
-                          <span class="pull-left thumb-sm avatar m-r">
-                            <img src="images/p@icon.jpg" alt="...">
-                          </span>
-                          <span class="clear">
-                            <span>Album #003</span>
-                            <small class="text-muted clear text-ellipsis">Artist #003</small>
-                          </span>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div> -->
-
-
-
-                  
-
-
-
-
-
-
-
                 </section>
 
                 <footer class="footer bg-dark jp-controls">
@@ -484,13 +230,13 @@
                       <span class="bar4 a4 bg-warning dk"></span>
                       <span class="bar5 a5 bg-danger dker"></span>
                     </span>
-                    <small>All right reserved. &copy; Copyright 2020</small>
+                    <small>All right reserved. &copy; Copyright 2021</small>
                     <span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
-                      <span class="bar1 a1 bg-primary lter"></span>
-                      <span class="bar2 a2 bg-info lt"></span>
-                      <span class="bar3 a3 bg-success"></span>
-                      <span class="bar4 a4 bg-warning dk"></span>
                       <span class="bar5 a5 bg-danger dker"></span>
+                      <span class="bar4 a4 bg-warning dk"></span>
+                      <span class="bar3 a3 bg-success"></span>
+                      <span class="bar2 a2 bg-info lt"></span>
+                      <span class="bar1 a1 bg-primary lter"></span>
                     </span>
                   </div>
                 </footer>

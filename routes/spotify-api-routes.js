@@ -90,6 +90,7 @@ module.exports = function(app) {
     }
     databaseOS.create(tableOS)
       .then(function() {
+        res.json({});
       })
       .catch(function(err) {
         // Redirect to Error page
