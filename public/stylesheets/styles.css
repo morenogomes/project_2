@@ -8381,18 +8381,96 @@ a.bg-light:hover,a.bg-light:focus{
   color:#fff;
   background-color:#36b0c8;
 }
-.btn-play-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-}
-.btn-play-wrapper input[type=button] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
-.btn-play-wrapper:hover {
-  color: #fff;
+
+@media (max-width: 426px) {
+
+  /* welcome title */
+  /* .h_title2{
+    font-weight: 15;
+    font-size:50px;
+    text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+  } */
+  /* Open Sound Studio */
+  .h_title{
+    /* font-family: "Raleway";
+    font-weight: 300; */
+    font-size:125px;
+    text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  /* cube */
+  .rotating-box{
+    width: 200px;
+    height: 200px;
+    perspective: 1600px;
+    margin:auto; 
+    position:absolute; 
+    bottom:0; 
+    left:0;right:0; 
+    max-height:100%;
+    max-width:100%;  
+    animation-duration: 5.5s;
+    animation-name: slidecubein;
+  }
+  .single-rb{
+    width: 50px;
+    animation: rotate 8s linear infinite;
+    transform-style: preserve-3d;
+    align-items: center;
+    margin-left: 15%;
+  }
+  .single-rb div{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    color: white;
+  }
+  .front-side{
+    transform: translateZ(75px);
+    width: 50px;
+    height: 50px;
+    background-color: #F37219;
+  }
+  .back-side{
+    transform: rotateY(180deg) translateZ(75px);
+    width: 50px;
+    height: 50px;
+    background-color: #F37219;
+  }
+  .left-side{
+    transform: rotateY(-90deg) translateX(-75px);
+    transform-origin: left;
+    width: 50px;
+    height: 50px;
+    background-color: #d35409;
+  }
+  .right-side{
+    transform: rotateY(90deg) translateX(75px);
+    transform-origin: right;
+    width: 50px;
+    height: 50px;
+    background-color: #d35409;
+  }
+  .top-side{
+    transform: rotateX(-90deg) translateY(-75px);
+    transform-origin: top;
+    width: 50px;
+    height: 50px;
+    background-color: #F37219;
+  }
+  .bottom-side{
+    transform: rotateX(90deg) translateY(75px);
+    transform-origin: bottom;
+    width: 50px;
+    height: 50px;
+    background-color: #d35409;
+  }
+  .h_logo{
+    font-size:145px;
+    text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    margin-top: -12.5px;
+  } */
+  
 }
