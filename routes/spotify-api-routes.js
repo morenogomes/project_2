@@ -64,7 +64,8 @@ module.exports = function(app) {
           songName   : req.body.field1,
           artistName : req.body.field2,
           albumImage : req.body.field3,
-          trackURI   : req.body.field4
+          trackURI   : req.body.field4,
+          UserId     : req.body.userid
         }
         break;
       case 2:
@@ -72,7 +73,8 @@ module.exports = function(app) {
         tableOS    = {
           artistName  : req.body.field1,
           artistImage : req.body.field2,
-          genre       : req.body.field3
+          genre       : req.body.field3,
+          UserId      : req.body.userid
         }
         break;
       case 3:
@@ -80,7 +82,8 @@ module.exports = function(app) {
         tableOS    = {
           albumName  : req.body.field1,
           albumImage : req.body.field2,
-          artistName : req.body.field3
+          artistName : req.body.field3,
+          UserId     : req.body.userid
         }
         break;
       default:
