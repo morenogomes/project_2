@@ -234,13 +234,13 @@ $(document).ready( function() {
               <div class="item-overlay opacity r r-2x bg-black">
                 <i class="center text-center m-t-n far fa-question-circle i-5x"></i>
               </div>
-              <a href="">
+              <span>
                 <img src="images/p_empty.jpg" alt="..." class="r r-2x img-full">
-              </a>
+              </span>
             </div>
             <div class="padder-v">
-              <a href="" class="text-ellipsis">? Song</a>
-              <a href="" class="text-ellipsis text-xs text-muted">? Artist</a>
+              <span class="text-ellipsis">? Song</span>
+              <small class="text-ellipsis text-xs text-muted">? Artist</small>
             </div>
           </div>
         </div>
@@ -258,8 +258,8 @@ $(document).ready( function() {
                   <img src="images/p@icon_empty.jpg" alt="..." class="r r-2x img-full">
                 </div>
                 <div class="padder-v">
-                  <a href="" class="text-ellipsis">? Artist</a>
-                  <a href="" class="text-ellipsis text-xs text-muted">? Genre</a>
+                  <span class="text-ellipsis">? Artist</span>
+                  <small class="text-ellipsis text-xs text-muted">? Genre</small>
                 </div>
               </div>
             </div>
@@ -285,7 +285,7 @@ $(document).ready( function() {
 
   function loadPlaylist(...osTable) {
     initialSettings();
-
+  
     // Loads Playlist 
     $("#page-target").append(`<h2 class="font-thin m-b">Playlist </h2>
                               <div class="row row-sm" id="playlist-row"></div>`
@@ -296,20 +296,19 @@ $(document).ready( function() {
                                       <div class="pos-rlt">
                                         <div class="item-overlay opacity r r-2x bg-black">
                                           <div class="center text-center m-t-n">
-                                            <a class="play_function" href="">
-                                              <span id="uri-track-${index}" style="display: none;">${element.trackURI}</span>
-                                              <i class="fas fa-play i-5x"></i>
-                                              <i class="fas fa-pause i-5x"></i>
-                                            </a>
+                                            <div class="btn-play-wrapper">
+                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this)" />
+                                              <i class="fas fa-play i-3x"></i>
+                                            </div>
                                           </div>
                                         </div>
-                                        <a href="">
+                                        <span>
                                           <img src="${element.albumImage}" alt="albumImage" class="r r-2x img-full">
-                                        </a>
+                                        </span>
                                       </div>
                                       <div class="padder-v">
-                                        <a href="" class="text-ellipsis">${element.songName}</a>
-                                        <a href="" class="text-ellipsis text-xs text-muted">${element.artistName}</a>
+                                        <span class="text-ellipsis">${element.songName}</span>
+                                        <small class="text-ellipsis text-xs text-muted">${element.artistName}</small>
                                       </div>
                                     </div>
                                   </div>`
@@ -341,8 +340,8 @@ $(document).ready( function() {
                                       <img src="${element.artistImage}" alt="artistImage" class="r r-2x img-full">
                                     </div>
                                     <div class="padder-v">
-                                      <a href="" class="text-ellipsis">${element.artistName}</a>
-                                      <a href="" class="text-ellipsis text-xs text-muted">${element.genre}</a>
+                                      <span class="text-ellipsis">${element.artistName}</span>
+                                      <small class="text-ellipsis text-xs text-muted">${element.genre}</small>
                                     </div>
                                   </div>
                                 </div>`
@@ -363,5 +362,8 @@ $(document).ready( function() {
                             );
     });
   }
-  
 })
+
+function play_track(e){
+  console.log("button value = " + document.getElementById(e.id).value);
+}

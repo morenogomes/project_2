@@ -8381,3 +8381,18 @@ a.bg-light:hover,a.bg-light:focus{
   color:#fff;
   background-color:#36b0c8;
 }
+.btn-play-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btn-play-wrapper input[type=button] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.btn-play-wrapper:hover {
+  color: #fff;
+}
