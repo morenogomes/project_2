@@ -27,6 +27,21 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true
   });
 
+  User.associate = function(models) {
+    // Associating User with Playlist
+    User.hasMany(models.Playlist, {
+      onDelete: "cascade"
+    });
+    // Associating User with Artist
+    User.hasMany(models.Artist, {
+      onDelete: "cascade"
+    });
+    // Associating User with Album
+    User.hasMany(models.Album, {
+      onDelete: "cascade"
+    });
+  };
+
   // Creating a custom method to check if the email/password entered by the user is the same to the email/password stored in our database
   User.prototype.validUserInfo = function(userinfo, pswd) {
     let result = false;

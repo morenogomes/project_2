@@ -163,6 +163,9 @@ $(document).ready( function() {
   });
 
   $('#add-playlist').on('click', function(e){
+    // Inserting User ID
+    playlistInfo.userid = '1'; // Change this after
+
     // POST method to the add-playlist route. [Successful = Playlist page | Failed = 404 Page]
     $.post("/api/addplaylist", playlistInfo)
       .then(function(data) {

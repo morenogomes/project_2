@@ -19,5 +19,13 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true
   });
 
+  Album.associate = function (models) {
+    Album.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Album;
 };
