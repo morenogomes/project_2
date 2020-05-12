@@ -298,7 +298,7 @@ $(document).ready( function() {
                                           <div class="center text-center m-t-n">
                                             <div class="btn-play-wrapper">
                                               <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this)" />
-                                              <i class="fas fa-play i-3x"></i>
+                                              <i class="track-icon fas fa-play i-3x"></i>
                                             </div>
                                           </div>
                                         </div>
@@ -365,5 +365,10 @@ $(document).ready( function() {
 })
 
 function play_track(e){
-  console.log("button value = " + document.getElementById(e.id).value);
+  $(document).ready( function() {
+    console.log("button value = " + document.getElementById(e.id).value);
+
+    // Change icon on click
+    $("i.track-icon", this).toggleClass("fa-pause fa-play");
+  });
 }
