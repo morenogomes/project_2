@@ -8396,3 +8396,49 @@ a.bg-light:hover,a.bg-light:focus{
 .btn-play-wrapper:hover {
   color: #fff;
 }
+.front-side{
+  transform: translateZ(75px);
+  width: 25px;
+  height: 25px;
+  background-color: #F37219;
+}
+.back-side{
+  transform: rotateY(180deg) translateZ(75px);
+  width: 21px;
+  height: 25px;
+  background-color: #F37219;
+}
+.left-side{
+  transform: rotateY(-90deg) translateX(-75px);
+  transform-origin: left;
+  width: 50px;
+  height: 50px;
+  background-color: #D35409;
+}
+.right-side{
+  transform: rotateY(90deg) translateX(75px);
+  transform-origin: right;
+  width: 50px;
+  height: 50px;
+  background-color: #D35409;
+}
+.top-side{
+  transform: rotateX(-90deg) translateY(-75px);
+  transform-origin: top;
+  width: 50px;
+  height: 50px;
+  background-color: #F37219;
+}
+.bottom-side{
+  transform: rotateX(90deg) translateY(75px);
+  transform-origin: bottom;
+  width: 50px;
+  height: 50px;
+  background-color: #D35409;
+}
+.h_logo{
+  font-size:145px;
+  text-shadow:0 1px 0 #D9D9D9,0 2px 0 #D0D0D0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  margin-top: -12.5px;
+}
