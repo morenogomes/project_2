@@ -304,8 +304,8 @@ $(document).ready( function() {
                                         <div class="item-overlay opacity r r-2x bg-black">
                                           <div class="center text-center m-t-n">
                                             <div class="btn-play-wrapper">
-                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this)" />
-                                              <i class="track-icon fas fa-play i-3x"></i>
+                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this, ${index})" />
+                                              <i id="track-icon${index}" class="fas fa-play i-3x"></i>
                                             </div>
                                           </div>
                                         </div>
@@ -371,19 +371,10 @@ $(document).ready( function() {
   }
 })
 
-// function play_track(e){
-//   $(document).ready( function() {
-//     console.log("button value = " + document.getElementById(e.id).value);
-
-//     // Change icon on click
-//     $("i.track-icon", this).toggleClass("fa-pause fa-play");
-//   });
-// }
-
-function play_track(e) {
+function play_track(e, index) {
   $(document).ready( function() {
     // Change icon on click
-    $("i.track-icon", this).toggleClass("fa-pause fa-play");
+    $("i#track-icon" + index, this).toggleClass("fa-pause fa-play");
   })
 
 
