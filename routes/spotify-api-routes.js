@@ -1,58 +1,124 @@
-// const express = require('express')
-const path = require("path");
+// Requiring models
+var db = require("../models");
+
 const Spotify = require('node-spotify-api');
-// const app = express()
 
 var spotify = new Spotify({
-    id: '96cba94b0188420d9b0947302e101419',
+    id:     '96cba94b0188420d9b0947302e101419',
     secret: 'd6d4076155934e91b382b9d192b9bd3d'
 });
 
-let track = "my heart will go on"
-let artist = "rihanna"
-let album = "take care"
-
 module.exports = function(app) {
-
-app.get('/api/track', (req, res) => {
+  // API Functions
+  // ============================================================= 
+  // Serach Artist Route
+  app.post("/api/searchartist", function(req, res) {
     spotify
-        .request('https://api.spotify.com/v1/search?query=' + track + '&type=track&offset=0&limit=2')
-        .then(function (response) {
-            res.json(response);
-            console.log("Name of Song: ", response.tracks.items[0].name.toUpperCase());
-            console.log("Name of Artist: ", response.tracks.items[0].album.artists[0].name.toUpperCase());
-            console.log("Album Image: ", response.tracks.items[0].album.images[0].url);
-            console.log("Audio File: ", response.tracks.items[0].uri);
-        })
+    .request('https://api.spotify.com/v1/search?query=' + req.body.artist + '&type=artist&offset=0&limit=2')
+    .then(function (response) {
+        res.json(response);
+    }) 
+    .catch(function(err) {
+      // Redirect to Error page
+      res.status(404).json(err);
+    });
+  });
 
-})
-
-app.get('/api/artist', (req, res) => {
+  // Serach Song Route
+  app.post("/api/searchsong", function(req, res) {
     spotify
-        .request('https://api.spotify.com/v1/search?query=' + artist + '&type=artist&offset=0&limit=2')
-        .then(function (response) {
-            res.json(response);
-            console.log("Name of Artist: ", response.artists.items[0].name.toUpperCase());
-            console.log("Genre: ", response.artists.items[0].genres[0].toUpperCase());
-            console.log("Artist Image: ", response.artists.items[0].images[0].url);
-        })
+    .request('https://api.spotify.com/v1/search?query=' + req.body.song + '&type=track&offset=0&limit=2')
+    .then(function (response) {
+        res.json(response);
+    }) 
+    .catch(function(err) {
+      // Redirect to Error page
+      res.status(404).json(err);
+    });
+  });
 
-})
-
-app.get('/api/album', (req, res) => {
+  // Serach Album Route
+  app.post("/api/searchalbum", function(req, res) {
     spotify
-        .request('https://api.spotify.com/v1/search?query=' + album + '&type=album&offset=0&limit=2')
-        .then(function (response) {
-            res.json(response);
-            console.log("Name of Artist: ", response.albums.items[0].artists[0].name.toUpperCase());
-            console.log("Name of Album: ", response.albums.items[0].name.toUpperCase());
-            console.log("Name of Album: ", response.albums.items[0].images[0].url);
-        })
+    .request('https://api.spotify.com/v1/search?query=' + req.body.album + '&type=album&offset=0&limit=2')
+    .then(function (response) {
+        res.json(response);
+    }) 
+    .catch(function(err) {
+      // Redirect to Error page
+      res.status(404).json(err);
+    });
+  });
 
-})
+  // SQL Functions
+  // =============================================================
+  // Add Playlist Route: If the information is added successfully, proceed to log the user in, otherwise send back an error
+  app.post("/api/addplaylist", function(req, res) {
+    let databaseOS;
+    let tableOS;
+    // Types: SONG = 1  |  ARTIST = 2  |  ALBUM = 3
+    switch (parseInt(req.body.type)){
+      case 1:
+        databaseOS = db.Playlist;
+        tableOS    = {
+          songName   : req.body.field1,
+          artistName : req.body.field2,
+          albumImage : req.body.field3,
+          trackURI   : req.body.field4,
+          UserId     : req.body.userid
+        }
+        break;
+      case 2:
+        databaseOS = db.Artist;
+        tableOS    = {
+          artistName  : req.body.field1,
+          artistImage : req.body.field2,
+          genre       : req.body.field3,
+          UserId      : req.body.userid
+        }
+        break;
+      case 3:
+        databaseOS = db.Album;
+        tableOS    = {
+          albumName  : req.body.field1,
+          albumImage : req.body.field2,
+          artistName : req.body.field3,
+          UserId     : req.body.userid
+        }
+        break;
+      default:
+        // Redirect to Error page
+        res.status(404).json(err);
+        break;
+    }
+    databaseOS.create(tableOS)
+      .then(function() {
+        res.json({});
+      })
+      .catch(function(err) {
+        // Redirect to Error page
+        res.status(404).json(err);
+      });
+  });
 
-// app.get('*', function (req, res) {
-//     res.sendFile(path.join(__dirname, "./public/error.html"));
-// });
+  // GET route for getting all of the data from Playlist
+  app.get("/api/playlist", function(req, res) {
+    db.Playlist.findAll({}).then(function(dbPlaylist) {
+      res.json(dbPlaylist);
+    });
+  });
 
+  // GET route for getting all of the data from Artist
+  app.get("/api/artist", function(req, res) {
+    db.Artist.findAll({}).then(function(dbArtist) {
+      res.json(dbArtist);
+    });
+  });
+
+  // GET route for getting all of the data from Album
+  app.get("/api/album", function(req, res) {
+    db.Album.findAll({}).then(function(dbAlbum) {
+      res.json(dbAlbum);
+    });
+  });
 }

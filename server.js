@@ -27,6 +27,6 @@ require("./routes/spotify-api-routes")(app);
 // =============================================================
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
-    console.log(`App listening on http://localhost:${PORT}/`);
+    console.log("\n🌎 http://localhost:"+PORT+"/\n");
   });
 });
