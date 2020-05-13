@@ -33,6 +33,7 @@ $(document).ready(function() {
     })
       .then(function(data) {
         localStorage.setItem("anonymus", !data.username ? data.email : data.username);
+        localStorage.setItem("uid", data.id);
         window.location.replace("/app");
       })
       .catch(handleLoginError);
