@@ -392,6 +392,7 @@ function play_track(e) {
   } else {
     player.togglePlay().then(() => {
     });
+    status = false
   }
 }
 
