@@ -367,11 +367,71 @@ $(document).ready( function() {
   }
 })
 
-function play_track(e){
-  $(document).ready( function() {
-    console.log("button value = " + document.getElementById(e.id).value);
+// function play_track(e){
+//   $(document).ready( function() {
+//     console.log("button value = " + document.getElementById(e.id).value);
 
-    // Change icon on click
-    $("i.track-icon", this).toggleClass("fa-pause fa-play");
+//     // Change icon on click
+//     $("i.track-icon", this).toggleClass("fa-pause fa-play");
+//   });
+// }
+
+function play_track(e) {
+  // Change icon on click
+  $("i.track-icon", this).toggleClass("fa-pause fa-play");
+
+  uri = document.getElementById(e.id).value;
+  console.log("the trackURI is " + uri);
+
+  if (status === false) {
+    startPlayer();
+    status = true
+  } else {
+    player.togglePlay().then(() => {
+    });
+  }
+}
+
+let player;
+let token = "BQD61x_WnbG6VOKfUugEAXuhSmJGnzViWipnC96WVuhInECZd4tGvKQbl3xw13E6QCpdaLSUxVD9wW7zDMdRm9IMm9zFykoDX_C_hiWaTNkilbZUjW8uICxIP_2jkjf8O7VKwxV1lF4gHNYlV6X2HzBog8rfCeNqaJdO";
+let isPlayerReady;
+let status = false;
+let uri;
+
+const startPlayer = () => {
+  if (!isPlayerReady) return;
+  player = new Spotify.Player({
+    name: 'Web Playback SDK Quick Start Player',
+    getOAuthToken: cb => { cb(token); }
+  });
+  player.addListener('ready', ({ device_id }) => {
+    play({
+      playerInstance: player,
+      spotify_uri: uri,
+    });
+  });
+  player.connect();
+};
+
+window.onSpotifyWebPlaybackSDKReady = () => {
+  isPlayerReady = true;
+};
+
+const play = ({
+  spotify_uri,
+  playerInstance,
+}) => {
+  playerInstance._options.getOAuthToken(access_token => {
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${playerInstance._options.id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ uris: [spotify_uri] }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+      },
+    })
+      .then(response => {
+        document.getElementById('http_code').innerHTML = response.status
+      });
   });
 }
