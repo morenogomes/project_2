@@ -8385,17 +8385,16 @@ a.bg-light:hover,a.bg-light:focus{
 @media (max-width: 426px) {
 
   /* welcome title */
-  /* .h_title2{
+  .h_title2{
     font-weight: 15;
     font-size:50px;
-    text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
     text-align: center;
-  } */
+  } 
   /* Open Sound Studio */
   .h_title{
-    /* font-family: "Raleway";
-    font-weight: 300; */
-    font-size:125px;
+    font-size:75px;
+    margin-bottom: 10px;
+    height: 490px;
     text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
     text-align: center;
   }
@@ -8406,13 +8405,17 @@ a.bg-light:hover,a.bg-light:focus{
     perspective: 1600px;
     margin:auto; 
     position:absolute; 
-    bottom:0; 
+    bottom:10; 
     left:0;right:0; 
     max-height:100%;
     max-width:100%;  
     animation-duration: 5.5s;
     animation-name: slidecubein;
   }
+
+  
+  /* ============================ */
+
   .single-rb{
     width: 50px;
     animation: rotate 8s linear infinite;
@@ -8471,6 +8474,6 @@ a.bg-light:hover,a.bg-light:focus{
     text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
     text-align: center;
     margin-top: -12.5px;
-  } */
+  } 
   
 }
