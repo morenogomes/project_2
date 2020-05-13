@@ -190,7 +190,7 @@ a.jp-playlist-current:before{
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 	.footer .jp-gui{
 		margin: 0 -10px;
 	}
@@ -8384,15 +8384,23 @@ a.bg-light:hover,a.bg-light:focus{
 
 @media (max-width: 426px) {
 
+  /* .box {
+    transform: rotate(360deg);
+    transform-origin: top left;
+  } */
+  
+
   /* welcome title */
   .h_title2{
     font-weight: 15;
     font-size:50px;
     text-align: center;
+    margin-bottom: 0px;
   } 
   /* Open Sound Studio */
   .h_title{
     font-size:75px;
+    margin-top: 0px;
     margin-bottom: 10px;
     height: 490px;
     text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
@@ -8411,6 +8419,8 @@ a.bg-light:hover,a.bg-light:focus{
     max-width:100%;  
     animation-duration: 5.5s;
     animation-name: slidecubein;
+    transform: rotate(360deg);
+    transform-origin: top left;
   }
 
   
