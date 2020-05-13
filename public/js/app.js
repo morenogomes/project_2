@@ -6,7 +6,7 @@ $(document).ready( function() {
 
   // Getting which user is Signed In (from localStorage) and updating the HTML
   // =============================================================
-  $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
+  $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm" id="uid" value="${localStorage.getItem("uid")}"> 
                              <img src="images/p@icon2.jpg" alt="..."> 
                              <i class="on b-white"></i> 
                           </span>
@@ -164,7 +164,7 @@ $(document).ready( function() {
 
   $('#add-playlist').on('click', function(e){
     // Inserting User ID
-    playlistInfo.userid = '1'; // Change this after
+    playlistInfo.userid = $('#uid').attr('value');
 
     // POST method to the add-playlist route. [Successful = Playlist page | Failed = 404 Page]
     $.post("/api/addplaylist", playlistInfo)
