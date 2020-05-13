@@ -377,8 +377,11 @@ $(document).ready( function() {
 // }
 
 function play_track(e) {
-  // Change icon on click
-  $("i.track-icon", this).toggleClass("fa-pause fa-play");
+  $(document).ready( function() {
+    // Change icon on click
+    $("i.track-icon", this).toggleClass("fa-pause fa-play");
+  })
+
 
   uri = document.getElementById(e.id).value;
   console.log("the trackURI is " + uri);
@@ -393,7 +396,7 @@ function play_track(e) {
 }
 
 let player;
-let token = "BQD61x_WnbG6VOKfUugEAXuhSmJGnzViWipnC96WVuhInECZd4tGvKQbl3xw13E6QCpdaLSUxVD9wW7zDMdRm9IMm9zFykoDX_C_hiWaTNkilbZUjW8uICxIP_2jkjf8O7VKwxV1lF4gHNYlV6X2HzBog8rfCeNqaJdO";
+let token = "BQBzekEua-JNKTkpmDRi7Gv4pMQzhse0Eu3f3WxofAuZ3QZS4PFJOsGQlrx_sHjOcdY8tStFwPseuWiWEZxtoB-19cfn2a7BE0YgVnYbhUYAyCj9cnaZ9wUxw_4IEdnGDHC64TVai3AvT8PghWTI_9BGJNhmylxrjvqR";
 let isPlayerReady;
 let status = false;
 let uri;
