@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "password123",
+=======
+    "password": "Stembiso369",
+>>>>>>> 02bbf5378a5abdc410fb53c9fe999f4ef36dd657
     "database": "opensound_db",
     "host": "127.0.0.1",
     "port": 3306,

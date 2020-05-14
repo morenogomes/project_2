@@ -7864,7 +7864,7 @@ a.bg-light:hover,a.bg-light:focus{
   margin-bottom: 10px;
 }
 .h_logo{
-  font-size:235px;
+  font-size:175px;
   text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
   text-align: center;
   margin-top: -12.5px;
@@ -7878,8 +7878,8 @@ a.bg-light:hover,a.bg-light:focus{
 }
 .h_title2{
   /* font-family: "Raleway"; */
-  font-weight: 300;
-  font-size:90px;
+  font-weight: 250;
+  font-size:75px;
   text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
   text-align: center;
 }
@@ -8255,71 +8255,70 @@ a.bg-light:hover,a.bg-light:focus{
     height:65%;
   }
 }
-
 .rotating-box{
-  width: 350px;
-  height: 350px;
+  width: 275px;
+  height:275px;
   perspective: 1600px;
-  margin:auto; /* Required */
+  margin: auto; /* Required */
   position:absolute; /* Required */
   bottom:0; /* Aligns at the bottom */
   left:0;right:0; /* Aligns horizontal center */
   max-height:100%; /* images bigger than 175 px  */
   max-width:100%;  /* will be shrinked to size */
-  animation-duration: 5.5s;
+  animation-duration: 8.5s;
   animation-name: slidecubein;
 }
 .single-rb{
-  width: 250px;
+  width: 175px;
   animation: rotate 8s linear infinite;
   transform-style: preserve-3d;
   align-items: center;
-  margin-left: 15%;
+  margin-left: 12.5%;
 }
 .single-rb div{
   position: absolute;
-  width: 250px;
-  height: 250px;
+  width: 175px;
+  height: 175px;
   color: white;
 }
 .front-side{
-  transform: translateZ(125px);
-  width: 250px;
-  height: 250px;
+  transform: translateZ(87.5px);
+  width: 175px;
+  height: 175px;
   background-color: #F37219;
 }
 .back-side{
-  transform: rotateY(180deg) translateZ(125px);
-  width: 250px;
-  height: 250px;
+  transform: rotateY(180deg) translateZ(87.5px);
+  width: 175px;
+  height: 175px;
   background-color: #F37219;
 }
 .left-side{
-  transform: rotateY(-90deg) translateX(-125px);
+  transform: rotateY(-90deg) translateX(-87.5px);
   transform-origin: left;
-  width: 250px;
-  height: 250px;
+  width: 175px;
+  height: 175px;
   background-color: #d35409;
 }
 .right-side{
-  transform: rotateY(90deg) translateX(125px);
+  transform: rotateY(90deg) translateX(87.5px);
   transform-origin: right;
-  width: 250px;
-  height: 250px;
+  width: 175px;
+  height: 175px;
   background-color: #d35409;
 }
 .top-side{
-  transform: rotateX(-90deg) translateY(-125px);
+  transform: rotateX(-90deg) translateY(-87.5px);
   transform-origin: top;
-  width: 250px;
-  height: 250px;
+  width: 175px;
+  height: 175px;
   background-color: #F37219;
 }
 .bottom-side{
-  transform: rotateX(90deg) translateY(125px);
+  transform: rotateX(90deg) translateY(87.5px);
   transform-origin: bottom;
-  width: 250px;
-  height: 250px;
+  width: 175px;
+  height: 175px;
   background-color: #d35409;
 }
 @keyframes rotate {
@@ -8398,7 +8397,17 @@ a.bg-light:hover,a.bg-light:focus{
 }
 
 @media (max-width: 426px) {
-
+/* =========+++++++++++++++=============== */
+  .scrollable{
+    padding-top: 0px;
+  }
+  .w-f-md{
+    padding-top: 0px;
+  }
+  #page-target{
+    padding: 100px;
+  }
+  
   /* welcome title */
   .h_title2{
     font-weight: 15;
@@ -8425,70 +8434,79 @@ a.bg-light:hover,a.bg-light:focus{
   position:absolute; /* Required */
   bottom:0; /* Aligns at the bottom */
   left:0;right:0; /* Aligns horizontal center */
-  max-height:1000%; /* images bigger than 175 px  */
+  max-height:100%; /* images bigger than 175 px  */
   max-width:100%;  /* will be shrinked to size */
-  animation-duration: 5.5s;
+  animation-duration: 1.5s;/*back to 5.5 */
   animation-name: slidecubein;
+  }
+  .single-rb{
+    width: 150px;
+    animation: rotate 8s linear infinite;
+    transform-style: preserve-3d;
+    align-items: center;
+    margin-left: 15%;
+  }
+  .single-rb div{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    color: white;
+  }
+  .front-side{
+    transform: translateZ(75px);
+    width: 150px;
+    height: 150px;
+    background-color: #F37219;
+  }
+  .back-side{
+    transform: rotateY(180deg) translateZ(75px);
+    width: 150px;
+    height: 150px;
+    background-color: #F37219;
+  }
+  .left-side{
+    transform: rotateY(-90deg) translateX(-75px);
+    transform-origin: left;
+    width: 150px;
+    height: 150px;
+    background-color: #d35409;
+  }
+  .right-side{
+    transform: rotateY(90deg) translateX(75px);
+    transform-origin: right;
+    width: 150px;
+    height: 150px;
+    background-color: #d35409;
+  }
+  .top-side{
+    transform: rotateX(-90deg) translateY(-75px);
+    transform-origin: top;
+    width: 150px;
+    height: 150px;
+    background-color: #F37219;
+  }
+  .bottom-side{
+    transform: rotateX(90deg) translateY(75px);
+    transform-origin: bottom;
+    width: 150px;
+    height: 150px;
+    background-color: #d35409;
+  }
+  .h_logo{
+    font-size:145px;
+    text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    margin-top: -12.5px;
+  } 
+
 }
-.single-rb{
-  width: 150px;
-  animation: rotate 8s linear infinite;
-  transform-style: preserve-3d;
-  align-items: center;
-  margin-left: 15%;
+
+
+@media (max-width: 321px){
+.footer{
+  padding-left: 0px;
+  padding-right: 0px;
 }
-.single-rb div{
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  color: white;
-}
-.front-side{
-  transform: translateZ(75px);
-  width: 150px;
-  height: 150px;
-  background-color: #F37219;
-}
-.back-side{
-  transform: rotateY(180deg) translateZ(75px);
-  width: 150px;
-  height: 150px;
-  background-color: #F37219;
-}
-.left-side{
-  transform: rotateY(-90deg) translateX(-75px);
-  transform-origin: left;
-  width: 150px;
-  height: 150px;
-  background-color: #d35409;
-}
-.right-side{
-  transform: rotateY(90deg) translateX(75px);
-  transform-origin: right;
-  width: 150px;
-  height: 150px;
-  background-color: #d35409;
-}
-.top-side{
-  transform: rotateX(-90deg) translateY(-75px);
-  transform-origin: top;
-  width: 150px;
-  height: 150px;
-  background-color: #F37219;
-}
-.bottom-side{
-  transform: rotateX(90deg) translateY(75px);
-  transform-origin: bottom;
-  width: 150px;
-  height: 150px;
-  background-color: #d35409;
-}
-.h_logo{
-  font-size:145px;
-  text-shadow:0 1px 0 #d9d9d9,0 2px 0 #d0d0d0,0 5px 10px rgba(0,0,0,0.125),0 10px 20px rgba(0,0,0,0.2);
-  text-align: center;
-  margin-top: -12.5px;
-} 
   
  
   /* ======navbar */
@@ -8513,4 +8531,3 @@ a.bg-light:hover,a.bg-light:focus{
     border:1px solid #ddd !important;
   } */
   
-}

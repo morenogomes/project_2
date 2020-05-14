@@ -171,7 +171,7 @@ $(document).ready( function() {
       .then(function(data) {
         e.preventDefault();
         // Check if database has any data
-        verifyDatabase();
+        verifyDatabase(playlistInfo.userid);
 
         // Informs if the information was added to the Playlist with success or Shows an error
         // $('#btn-modal-response').click();
@@ -203,14 +203,18 @@ $(document).ready( function() {
   // =============================================================
   $("#playlist_1").on('click', function(e){
     e.preventDefault();
+
+    // Inserting User ID
+    const user_id = $('#uid').attr('value');
+
     // Check if database has any data
-    verifyDatabase();
+    verifyDatabase(user_id);
   });
 
-  function verifyDatabase(){
-    $.get("/api/playlist", function(playlistData) {
-      $.get("/api/artist", function(artistData) {
-        $.get("/api/album", function(albumData) {
+  function verifyDatabase(u_id){
+    $.get("/api/playlist/"  + u_id, function(playlistData) {
+      $.get("/api/artist/"  + u_id, function(artistData) {
+        $.get("/api/album/" + u_id, function(albumData) {
 
           // Check if database has any data
           jQuery.isEmptyObject(playlistData) && jQuery.isEmptyObject(artistData) && jQuery.isEmptyObject(albumData) ? loadDefaultPlaylist() : loadPlaylist(playlistData, artistData, albumData);
@@ -300,8 +304,8 @@ $(document).ready( function() {
                                         <div class="item-overlay opacity r r-2x bg-black">
                                           <div class="center text-center m-t-n">
                                             <div class="btn-play-wrapper">
-                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this)" />
-                                              <i class="track-icon fas fa-play i-3x"></i>
+                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this, ${index})" />
+                                              <i id="track-icon${index}" class="fas fa-play i-3x"></i>
                                             </div>
                                           </div>
                                         </div>
@@ -367,19 +371,10 @@ $(document).ready( function() {
   }
 })
 
-// function play_track(e){
-//   $(document).ready( function() {
-//     console.log("button value = " + document.getElementById(e.id).value);
-
-//     // Change icon on click
-//     $("i.track-icon", this).toggleClass("fa-pause fa-play");
-//   });
-// }
-
-function play_track(e) {
+function play_track(e, index) {
   $(document).ready( function() {
     // Change icon on click
-    $("i.track-icon", this).toggleClass("fa-pause fa-play");
+    $("i#track-icon" + index, this).toggleClass("fa-pause fa-play");
   })
 
 

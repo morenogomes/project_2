@@ -102,22 +102,34 @@ module.exports = function(app) {
   });
 
   // GET route for getting all of the data from Playlist
-  app.get("/api/playlist", function(req, res) {
-    db.Playlist.findAll({}).then(function(dbPlaylist) {
+  app.get("/api/playlist/:id", function(req, res) {
+    db.Playlist.findAll({
+      where: {
+        UserId: req.params.id
+      }
+    }).then(function(dbPlaylist) {
       res.json(dbPlaylist);
     });
   });
 
   // GET route for getting all of the data from Artist
-  app.get("/api/artist", function(req, res) {
-    db.Artist.findAll({}).then(function(dbArtist) {
+  app.get("/api/artist/:id", function(req, res) {
+    db.Artist.findAll({
+      where: {
+        UserId: req.params.id
+      }
+    }).then(function(dbArtist) {
       res.json(dbArtist);
     });
   });
 
   // GET route for getting all of the data from Album
-  app.get("/api/album", function(req, res) {
-    db.Album.findAll({}).then(function(dbAlbum) {
+  app.get("/api/album/:id", function(req, res) {
+    db.Album.findAll({
+      where: {
+        UserId: req.params.id
+      }
+    }).then(function(dbAlbum) {
       res.json(dbAlbum);
     });
   });
