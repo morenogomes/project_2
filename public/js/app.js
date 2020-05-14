@@ -4,10 +4,6 @@ $(document).ready( function() {
   const ALBUM  = 3;
   let playlistInfo;
 
-  var str = window.location.href;
-  var res = str.substring(str.indexOf("=") + 1, str.length);
-  localStorage.setItem("tkn", res);
-
   // Getting which user is Signed In (from localStorage) and updating the HTML
   // =============================================================
   $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm" id="uid" value="${localStorage.getItem("uid")}"> 
@@ -376,12 +372,15 @@ $(document).ready( function() {
 })
 
 let player;
-// let token = "";
 let isPlayerReady;
 let status = false;
 let uri;
 
+var str = window.location.href;
+var token = str.substring(str.indexOf("=") + 1, str.length);
+
 function play_track(e, index) {
+
   $(document).ready( function() {
     // Change icon on click
     $("i#track-icon" + index, this).toggleClass("fa-pause fa-play");
@@ -402,7 +401,7 @@ function play_track(e, index) {
 
 const startPlayer = () => {
   if (!isPlayerReady) return;
-  var token = localStorage.getItem("tkn");
+
   player = new Spotify.Player({
     name: 'Web Playback SDK Quick Start Player',
     getOAuthToken: cb => { cb(token); }
