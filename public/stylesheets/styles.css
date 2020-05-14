@@ -8265,7 +8265,7 @@ a.bg-light:hover,a.bg-light:focus{
   left:0;right:0; /* Aligns horizontal center */
   max-height:100%; /* images bigger than 175 px  */
   max-width:100%;  /* will be shrinked to size */
-  animation-duration: 8.5s;
+  animation-duration: 4.5s;
   animation-name: slidecubein;
 }
 .single-rb{
@@ -8359,13 +8359,13 @@ a.bg-light:hover,a.bg-light:focus{
 }
 @keyframes slidecubein {
   from {
-    margin-left: 29%;
+    margin-left: 32.2388%;
     margin-bottom: 100%;
     width: 300%; 
   }
 
   to {
-    margin-left: 29%;
+    margin-left: 32.2388%;
     margin-bottom: 0%;
     width: 100%;
   }
