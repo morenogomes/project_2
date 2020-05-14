@@ -8,7 +8,7 @@ module.exports = function (app) {
 
   let redirect_uri =
     process.env.REDIRECT_URI ||
-    'http://stormy-reaches-70588-backend.herokuapp.com/app'
+    'http://stormy-reaches-70588.herokuapp.com/app'
 
   app.get('/login', function (req, res) {
     res.redirect('https://accounts.spotify.com/authorize?' +
