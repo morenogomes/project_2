@@ -36,9 +36,18 @@ $(document).ready(function() {
       username: username,
       password: password
     })
-      .then(function(data) {
-        localStorage.setItem("anonymus", !data.username ? data.email : data.username);
-        window.location.replace("/app");
+      .then(function(signup_data) {
+        // It's important to signin to get the User ID from the database
+        $.post("/api/signin", {
+          email:    email,
+          password: password
+        })
+          .then(function(signin_data) {
+            localStorage.setItem("anonymus", !signin_data.username ? signin_data.email : signin_data.username);
+            localStorage.setItem("uid", signin_data.id);
+            window.location.replace("/app");
+          })
+          .catch(handleLoginError);
       })
       .catch(handleLoginError);
   }

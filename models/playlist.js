@@ -23,5 +23,13 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true
   });
 
+  Playlist.associate = function (models) {
+    Playlist.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Playlist;
 };

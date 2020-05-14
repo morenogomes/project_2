@@ -6,7 +6,7 @@ $(document).ready( function() {
 
   // Getting which user is Signed In (from localStorage) and updating the HTML
   // =============================================================
-  $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> 
+  $("#user-name").append(`<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm" id="uid" value="${localStorage.getItem("uid")}"> 
                              <img src="images/p@icon2.jpg" alt="..."> 
                              <i class="on b-white"></i> 
                           </span>
@@ -163,12 +163,15 @@ $(document).ready( function() {
   });
 
   $('#add-playlist').on('click', function(e){
+    // Inserting User ID
+    playlistInfo.userid = $('#uid').attr('value');
+
     // POST method to the add-playlist route. [Successful = Playlist page | Failed = 404 Page]
     $.post("/api/addplaylist", playlistInfo)
       .then(function(data) {
         e.preventDefault();
         // Check if database has any data
-        verifyDatabase();
+        verifyDatabase(playlistInfo.userid);
 
         // Informs if the information was added to the Playlist with success or Shows an error
         // $('#btn-modal-response').click();
@@ -200,14 +203,18 @@ $(document).ready( function() {
   // =============================================================
   $("#playlist_1").on('click', function(e){
     e.preventDefault();
+
+    // Inserting User ID
+    const user_id = $('#uid').attr('value');
+
     // Check if database has any data
-    verifyDatabase();
+    verifyDatabase(user_id);
   });
 
-  function verifyDatabase(){
-    $.get("/api/playlist", function(playlistData) {
-      $.get("/api/artist", function(artistData) {
-        $.get("/api/album", function(albumData) {
+  function verifyDatabase(u_id){
+    $.get("/api/playlist/"  + u_id, function(playlistData) {
+      $.get("/api/artist/"  + u_id, function(artistData) {
+        $.get("/api/album/" + u_id, function(albumData) {
 
           // Check if database has any data
           jQuery.isEmptyObject(playlistData) && jQuery.isEmptyObject(artistData) && jQuery.isEmptyObject(albumData) ? loadDefaultPlaylist() : loadPlaylist(playlistData, artistData, albumData);
@@ -297,8 +304,8 @@ $(document).ready( function() {
                                         <div class="item-overlay opacity r r-2x bg-black">
                                           <div class="center text-center m-t-n">
                                             <div class="btn-play-wrapper">
-                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this)" />
-                                              <i class="track-icon fas fa-play i-3x"></i>
+                                              <input type='button' id="button${index}" value='${element.trackURI}' onclick="play_track(this, ${index})" />
+                                              <i id="track-icon${index}" class="fas fa-play i-3x"></i>
                                             </div>
                                           </div>
                                         </div>
@@ -364,11 +371,66 @@ $(document).ready( function() {
   }
 })
 
-function play_track(e){
+function play_track(e, index) {
   $(document).ready( function() {
-    console.log("button value = " + document.getElementById(e.id).value);
-
     // Change icon on click
-    $("i.track-icon", this).toggleClass("fa-pause fa-play");
+    $("i#track-icon" + index, this).toggleClass("fa-pause fa-play");
+  })
+
+
+  uri = document.getElementById(e.id).value;
+  console.log("the trackURI is " + uri);
+
+  if (status === false) {
+    startPlayer();
+    status = true
+  } else {
+    player.togglePlay().then(() => {
+    });
+    status = false
+  }
+}
+
+let player;
+let token = "BQBzekEua-JNKTkpmDRi7Gv4pMQzhse0Eu3f3WxofAuZ3QZS4PFJOsGQlrx_sHjOcdY8tStFwPseuWiWEZxtoB-19cfn2a7BE0YgVnYbhUYAyCj9cnaZ9wUxw_4IEdnGDHC64TVai3AvT8PghWTI_9BGJNhmylxrjvqR";
+let isPlayerReady;
+let status = false;
+let uri;
+
+const startPlayer = () => {
+  if (!isPlayerReady) return;
+  player = new Spotify.Player({
+    name: 'Web Playback SDK Quick Start Player',
+    getOAuthToken: cb => { cb(token); }
+  });
+  player.addListener('ready', ({ device_id }) => {
+    play({
+      playerInstance: player,
+      spotify_uri: uri,
+    });
+  });
+  player.connect();
+};
+
+window.onSpotifyWebPlaybackSDKReady = () => {
+  isPlayerReady = true;
+};
+
+const play = ({
+  spotify_uri,
+  playerInstance,
+}) => {
+  playerInstance._options.getOAuthToken(access_token => {
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${playerInstance._options.id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ uris: [spotify_uri] }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+      },
+    })
+      .then(response => {
+        document.getElementById('http_code').innerHTML = response.status
+      });
   });
 }
