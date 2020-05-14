@@ -12,7 +12,6 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/app.js"></script>
 
 </head>
 
@@ -191,7 +190,7 @@
                   <div class="text">
                     <h1 id="welcometo" class="h_title2 text-white">Welcome to</h1>
                     <br>
-                    <h1 id="w-oss" class="h_title text-white">Open Sound</h1>
+                    <h1 id="w-oss" class="h_title text-white">Open Sound Studio</h1>
                   </div>
                   <div class="rotating-box">
                     <div class="single-rb">
@@ -248,6 +247,78 @@
       </section>
     </section>
   </section>
+
+  <script src="js/app.js"></script>
+  <script>
+    // spotify JS here
+    let player;
+    let token = "BQC0vVzmfSbeK_Y3ph_h9Lpil85Sz_faYkgEwTXjYliXX21lbfZkCUntMz1JWFR94D_En265Sz6KBaY_7znmb_46O3f573ibEV_rndVZOglDJjYzgs-NN_oBhrXH3is4ZpxlquIhtrU3i0_M4OahEwYoT4_TMWmXvSMk";
+    let isPlayerReady;
+    let status = false
+
+    $('.play_function').on('click', function () {
+      if (status === false) {
+        startPlayer();
+        status = true
+      } else {
+        player.togglePlay().then(() => {
+        });
+      }
+    })
+
+    // second player
+
+    // $('#play_function2').on('click', function () {
+    //   if (status === false) {
+    //     startPlayer();
+    //     status = true
+    //   } else {
+    //     player.togglePlay().then(() => {
+    //     });
+    //   }
+    // })
+
+    // second player
+
+    onSpotifyWebPlaybackSDKReady = () => {
+      isPlayerReady = true;
+    };
+
+    const startPlayer = () => {
+      if (!isPlayerReady) return;
+      player = new Spotify.Player({
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); }
+      });
+      player.addListener('ready', ({ device_id }) => {
+        play({
+          playerInstance: player,
+          spotify_uri: 'spotify:track:33LC84JgLvK2KuW43MfaNq',
+        });
+      });
+      player.connect();
+    };
+
+    const play = ({
+      spotify_uri,
+      playerInstance,
+    }) => {
+      playerInstance._options.getOAuthToken(access_token => {
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${playerInstance._options.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({ uris: [spotify_uri] }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+          },
+        })
+          .then(response => {
+            document.getElementById('http_code').innerHTML = response.status
+          });
+      });
+    };
+
+  </script>
 
 </body>
 

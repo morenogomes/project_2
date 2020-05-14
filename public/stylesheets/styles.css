@@ -8421,10 +8421,11 @@ a.bg-light:hover,a.bg-light:focus{
   height: 250px;
   perspective: 1600px;
   margin:auto; /* Required */
+  /* margin-bottom: 80px; */
   position:absolute; /* Required */
   bottom:0; /* Aligns at the bottom */
   left:0;right:0; /* Aligns horizontal center */
-  max-height:100%; /* images bigger than 175 px  */
+  max-height:1000%; /* images bigger than 175 px  */
   max-width:100%;  /* will be shrinked to size */
   animation-duration: 5.5s;
   animation-name: slidecubein;
@@ -8491,6 +8492,25 @@ a.bg-light:hover,a.bg-light:focus{
   
  
   /* ======navbar */
+
   
+  /* .navbar{
+    display:none;
+  }
+  .table td,.table th{
+    background-color:#fff !important;
+  }
+  .btn>.caret,.dropup>.btn>.caret{
+    border-top-color:#000 !important;
+  }
+  .label{
+    border:1px solid #000;
+  }
+  .table{
+    border-collapse:collapse !important;
+  }
+  .table-bordered th,.table-bordered td{
+    border:1px solid #ddd !important;
+  } */
   
 }
