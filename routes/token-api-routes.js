@@ -4,8 +4,6 @@ let querystring = require('querystring')
 const SPOTIFY_CLIENT_ID = '96cba94b0188420d9b0947302e101419'
 const SPOTIFY_CLIENT_SECRET = 'd6d4076155934e91b382b9d192b9bd3d'
 
-var access_code;
-
 module.exports = function (app) {
 
   let redirect_uri =
