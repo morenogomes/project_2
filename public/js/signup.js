@@ -45,7 +45,7 @@ $(document).ready(function() {
           .then(function(signin_data) {
             localStorage.setItem("anonymus", !signin_data.username ? signin_data.email : signin_data.username);
             localStorage.setItem("uid", signin_data.id);
-            window.location.replace("/app");
+            window.location.replace("/login");
           })
           .catch(handleLoginError);
       })

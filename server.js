@@ -22,6 +22,7 @@ app.use(express.static("public"));
 require("./routes/html-routes.js")(app);
 require("./routes/login-api-routes.js")(app);
 require("./routes/spotify-api-routes")(app);
+require("./routes/token-api-routes")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
