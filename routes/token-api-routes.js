@@ -8,7 +8,7 @@ module.exports = function (app) {
 
   let redirect_uri =
     process.env.REDIRECT_URI ||
-    'http://localhost:8080/app'
+    'https://ancient-plains-34095.herokuapp.com/app'
 
   app.get('/login', function (req, res) {
     res.redirect('https://accounts.spotify.com/authorize?' +
@@ -39,7 +39,7 @@ module.exports = function (app) {
     request.post(authOptions, function (error, response, body) {
 
       var access_token = body.access_token
-      let uri = process.env.FRONTEND_URI || 'http://localhost:8080'
+      let uri = process.env.FRONTEND_URI || 'https://ancient-plains-34095.herokuapp.com'
       res.redirect(uri + '?access_token=' + access_token)
 
     })
