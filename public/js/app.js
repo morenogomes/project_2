@@ -379,6 +379,11 @@ let uri;
 var str = window.location.href;
 var token = str.substring(str.indexOf("=") + 1, str.length);
 
+$.get('/token/' + token, function(tkn) {
+  console.log("here it fucking is ", tkn.access_token);
+  token = tkn.access_token;
+})
+
 function play_track(e, index) {
 
   $(document).ready( function() {

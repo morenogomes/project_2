@@ -1,8 +1,8 @@
-let request     = require('request')
-let querystring = require('querystring')
+const request     = require('request');
+const querystring = require('querystring');
 
-const SPOTIFY_CLIENT_ID     = '96cba94b0188420d9b0947302e101419'
-const SPOTIFY_CLIENT_SECRET = 'd6d4076155934e91b382b9d192b9bd3d'
+const SPOTIFY_CLIENT_ID     = '96cba94b0188420d9b0947302e101419';
+const SPOTIFY_CLIENT_SECRET = 'd6d4076155934e91b382b9d192b9bd3d';
 
 module.exports = function (app) {
 
@@ -16,12 +16,13 @@ module.exports = function (app) {
         response_type: 'code',
         client_id: SPOTIFY_CLIENT_ID,
         scope: ['streaming'],
-        redirect_uri
+        redirect_uri,
       }))
   })
 
-  app.get('/app', function (req, res) {
-    let code = req.query.code || null
+  app.get('/token/:access_code', function (req, res) {
+    console.log("We are in the function to get token = ", req.params.access_code)
+    let code = req.params.access_code || null
     let authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
@@ -38,11 +39,10 @@ module.exports = function (app) {
     }
     request.post(authOptions, function (error, response, body) {
 
-      var access_token = body.access_token
-      let uri = process.env.FRONTEND_URI || 'https://stark-woodland-75959.herokuapp.com'
-      res.redirect(uri + '?access_token=' + access_token)
+      res.json(body);
 
     })
 
   })
+
 }
