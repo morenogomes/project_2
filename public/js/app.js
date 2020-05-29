@@ -1,7 +1,7 @@
-$(document).ready( function() {
-  const SONG   = 1;
+$(document).ready(function () {
+  const SONG = 1;
   const ARTIST = 2;
-  const ALBUM  = 3;
+  const ALBUM = 3;
   let playlistInfo;
 
   // Getting which user is Signed In (from localStorage) and updating the HTML
@@ -19,7 +19,7 @@ $(document).ready( function() {
   // Making object dynamics
   // =============================================================
   // Function to collapse NavBar
-  $(document).on('click','[data-toggle^="class"]', function(e){
+  $(document).on('click', '[data-toggle^="class"]', function (e) {
     e && e.preventDefault();
     var $this = $(e.target), $class, $target, $tmp, $classes, $targets;
     !$this.data('toggle') && ($this = $this.closest('[data-toggle^="class"]'));
@@ -28,12 +28,12 @@ $(document).ready( function() {
     $class && ($tmp = $class.split(':')[1]) && ($classes = $tmp.split(','));
     $target && ($targets = $target.split(','));
 
-    $classes && $classes.length && $.each($targets, function(index, value){
-      if($classes[index].indexOf('*') !== -1){
-        var patt = new RegExp('\\s' + $classes[index].replace(/\*/g,'[A-Za-z0-9-_]+').split(' ').join('\\s|\\s')+'\\s','g');
-        $($this).each(function(i, it){
+    $classes && $classes.length && $.each($targets, function (index, value) {
+      if ($classes[index].indexOf('*') !== -1) {
+        var patt = new RegExp('\\s' + $classes[index].replace(/\*/g, '[A-Za-z0-9-_]+').split(' ').join('\\s|\\s') + '\\s', 'g');
+        $($this).each(function (i, it) {
           var cn = ' ' + it.className + ' ';
-          while(patt.test(cn)){
+          while (patt.test(cn)) {
             cn = cn.replace(patt, ' ');
           }
           it.className = $.trim(cn);
@@ -45,7 +45,7 @@ $(document).ready( function() {
   });
 
   // Function to Show Search Input
-  $(document).on('click','[data-ride="collapse"] a', function(e){
+  $(document).on('click', '[data-ride="collapse"] a', function (e) {
     var $this = $(e.target), $active;
     $this.is('a') || ($this = $this.closest('a'));
     $active = $this.parent().siblings(".active");
@@ -54,7 +54,7 @@ $(document).ready( function() {
     $this.parent().toggleClass('active');
     $this.next().is('ul') && e.preventDefault();
 
-    setTimeout(function(){
+    setTimeout(function () {
       $(document).trigger('updateNav');
     }, 300);
   });
@@ -62,28 +62,28 @@ $(document).ready( function() {
 
   // Jquery Functions
   // =============================================================  
-  $('#artists').keypress(function(event){
-    playlistInfo  = ''; // Important!! Always clear the variable
+  $('#artists').keypress(function (event) {
+    playlistInfo = ''; // Important!! Always clear the variable
     const keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
+    if (keycode == '13') {
       $('#btn-search').click();
 
       $.post("/api/searchartist", {
         artist: $('#artists').val().trim()
       })
-        .then(function(data) {
-          const $name  = `<div class="namer"><b>Artist: </b><span>${data.artists.items[0].name.toUpperCase()}</span></div>`;
+        .then(function (data) {
+          const $name = `<div class="namer"><b>Artist: </b><span>${data.artists.items[0].name.toUpperCase()}</span></div>`;
           const $image = $("<img>").attr("src", data.artists.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
           const $genre = `<div class="namer"><i>Genre: <span>${data.artists.items[0].genres[0].toUpperCase()}</span></i></div>`;
- 
+
           // Global object that will hold the information of user's search
           playlistInfo = {
-            type   : ARTIST,
-            field1 : data.artists.items[0].name.toUpperCase(),
-            field2 : data.artists.items[0].images[0].url,
-            field3 : data.artists.items[0].genres[0].toUpperCase()
+            type: ARTIST,
+            field1: data.artists.items[0].name.toUpperCase(),
+            field2: data.artists.items[0].images[0].url,
+            field3: data.artists.items[0].genres[0].toUpperCase()
           }
-          
+
           // Removes previous search
           clearSearch();
 
@@ -92,30 +92,30 @@ $(document).ready( function() {
 
           $('#artists').val('');
         })
-      }
+    }
   });
 
-  $('#songs').keypress(function(event){
-    playlistInfo  = ''; // Important!! Always clear the variable
+  $('#songs').keypress(function (event) {
+    playlistInfo = ''; // Important!! Always clear the variable
     const keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
+    if (keycode == '13') {
       $('#btn-search').click();
 
       $.post("/api/searchsong", {
         song: $('#songs').val().trim()
       })
-        .then(function(data) {
-          const $name   = `<div class="namer"><b>Song: </b><span>${data.tracks.items[0].name.toUpperCase()}</span></div>`;
-          const $image  = $("<img>").attr("src", data.tracks.items[0].album.images[0].url).attr("style", "height: 250px; width: 250px");
+        .then(function (data) {
+          const $name = `<div class="namer"><b>Song: </b><span>${data.tracks.items[0].name.toUpperCase()}</span></div>`;
+          const $image = $("<img>").attr("src", data.tracks.items[0].album.images[0].url).attr("style", "height: 250px; width: 250px");
           const $artist = `<div class="namer"><b>Artist: </b><span>${data.tracks.items[0].album.artists[0].name.toUpperCase()}</span></div>`;
 
           // Global object that will hold the information of user's search
           playlistInfo = {
-            type   : SONG,
-            field1 : data.tracks.items[0].name.toUpperCase(),
-            field2 : data.tracks.items[0].album.artists[0].name.toUpperCase(),
-            field3 : data.tracks.items[0].album.images[0].url,
-            field4 : data.tracks.items[0].uri
+            type: SONG,
+            field1: data.tracks.items[0].name.toUpperCase(),
+            field2: data.tracks.items[0].album.artists[0].name.toUpperCase(),
+            field3: data.tracks.items[0].album.images[0].url,
+            field4: data.tracks.items[0].uri
           }
 
           // Removes previous search
@@ -129,26 +129,26 @@ $(document).ready( function() {
     }
   });
 
-  $('#albums').keypress(function(event){
-    playlistInfo  = ''; // Important!! Always clear the variable
+  $('#albums').keypress(function (event) {
+    playlistInfo = ''; // Important!! Always clear the variable
     const keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
+    if (keycode == '13') {
       $('#btn-search').click();
 
       $.post("/api/searchalbum", {
         album: $('#albums').val().trim()
       })
-        .then(function(data) {
+        .then(function (data) {
           const $album = `<div class="namer"><b>Album: </b><span>${data.albums.items[0].name.toUpperCase()}</span></div>`;
           const $image = $("<img>").attr("src", data.albums.items[0].images[0].url).attr("style", "height: 250px; width: 250px");
-          const $name  = `<div class="namer"><b>Artist: </b><span>${data.albums.items[0].artists[0].name.toUpperCase()}</span></div>`;
+          const $name = `<div class="namer"><b>Artist: </b><span>${data.albums.items[0].artists[0].name.toUpperCase()}</span></div>`;
 
           // Global object that will hold the information of user's search
           playlistInfo = {
-            type   : ALBUM,
-            field1 : data.albums.items[0].name.toUpperCase(),
-            field2 : data.albums.items[0].images[0].url,
-            field3 : data.albums.items[0].artists[0].name.toUpperCase()
+            type: ALBUM,
+            field1: data.albums.items[0].name.toUpperCase(),
+            field2: data.albums.items[0].images[0].url,
+            field3: data.albums.items[0].artists[0].name.toUpperCase()
           }
 
           // Removes previous search
@@ -162,19 +162,18 @@ $(document).ready( function() {
     }
   });
 
-  $('#add-playlist').on('click', function(e){
+  $('#add-playlist').on('click', function (e) {
     // Inserting User ID
     playlistInfo.userid = $('#uid').attr('value');
 
     // POST method to the add-playlist route. [Successful = Playlist page | Failed = 404 Page]
     $.post("/api/addplaylist", playlistInfo)
-      .then(function(data) {
+      .then(function (data) {
         e.preventDefault();
         // Check if database has any data
         verifyDatabase(playlistInfo.userid);
 
-        // Informs if the information was added to the Playlist with success or Shows an error
-        // $('#btn-modal-response').click();
+        
       })
       .catch(handleAddPlaylistError);
   })
@@ -182,13 +181,13 @@ $(document).ready( function() {
   // General Jquery Functions
   // ============================================================= 
   function clearSearch() {
-    $("#name").empty(); 
+    $("#name").empty();
     $('#img').empty();
     $("#tittle").empty();
   }
 
-  function appendResponse(name, image, tittle){
-    $("#name").append(name); 
+  function appendResponse(name, image, tittle) {
+    $("#name").append(name);
     $('#img').append(image);
     $("#tittle").append(tittle);
   }
@@ -198,10 +197,10 @@ $(document).ready( function() {
     localStorage.setItem("skullstatus", err.status);
     window.location.replace("/error");
   }
-  
+
   // Building Customized User Page Dynamically
   // =============================================================
-  $("#playlist_1").on('click', function(e){
+  $("#playlist_1").on('click', function (e) {
     e.preventDefault();
 
     // Inserting User ID
@@ -211,10 +210,10 @@ $(document).ready( function() {
     verifyDatabase(user_id);
   });
 
-  function verifyDatabase(u_id){
-    $.get("/api/playlist/"  + u_id, function(playlistData) {
-      $.get("/api/artist/"  + u_id, function(artistData) {
-        $.get("/api/album/" + u_id, function(albumData) {
+  function verifyDatabase(u_id) {
+    $.get("/api/playlist/" + u_id, function (playlistData) {
+      $.get("/api/artist/" + u_id, function (artistData) {
+        $.get("/api/album/" + u_id, function (albumData) {
 
           // Check if database has any data
           jQuery.isEmptyObject(playlistData) && jQuery.isEmptyObject(artistData) && jQuery.isEmptyObject(albumData) ? loadDefaultPlaylist() : loadPlaylist(playlistData, artistData, albumData);
@@ -231,7 +230,7 @@ $(document).ready( function() {
 
   function loadDefaultPlaylist() {
     initialSettings();
-    
+
     $("#page-target").append(
       `<h2 class="font-thin m-b">Playlist </h2>
       <div class="row row-sm">
@@ -292,11 +291,11 @@ $(document).ready( function() {
 
   function loadPlaylist(...osTable) {
     initialSettings();
-  
+
     // Loads Playlist 
     $("#page-target").append(`<h2 class="font-thin m-b">Playlist </h2>
                               <div class="row row-sm" id="playlist-row"></div>`
-                            );
+    );
     osTable[0].forEach((element, index) => {
       $("#playlist-row").append(`<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                                     <div class="item">
@@ -317,11 +316,12 @@ $(document).ready( function() {
                                         <span class="text-ellipsis">${element.songName}</span>
                                         <small class="text-ellipsis text-xs text-muted">${element.artistName}</small>
                                       </div>
+                                      <button type="button" class="deleteSong btn  btn-secondary btn-sm" data-id= ${element.id} >Remove</button>
                                     </div>
                                   </div>`
-                                );
+      );
 
-      if((index + 1) % 2 === 0) {
+      if ((index + 1) % 2 === 0) {
         $("#playlist-row").append(`<div class="clearfix visible-xs"></div>`)
       }
     });
@@ -337,7 +337,7 @@ $(document).ready( function() {
                                   <div class="list-group bg-white list-group-lg no-bg auto" id="album-row"></div>
                                 </div>
                               </div>`
-                            );
+    );
 
     // Loads Artist
     osTable[1].forEach(element => {
@@ -350,9 +350,10 @@ $(document).ready( function() {
                                       <span class="text-ellipsis">${element.artistName}</span>
                                       <small class="text-ellipsis text-xs text-muted">${element.genre}</small>
                                     </div>
-                                  </div>
+                                    <button type="button" class="delete btn  btn-secondary btn-sm" data-id= ${element.id} >Remove</button>
+                                    </div>
                                 </div>`
-                              );
+      );
     });
 
     // Loads Album
@@ -365,11 +366,57 @@ $(document).ready( function() {
                                   <span>${element.albumName}</span>
                                   <small class="text-muted clear text-ellipsis">${element.artistName}</small>
                                 </span>
+                                <button type="button" class="deleteAlbum btn  btn-secondary btn-sm" data-id= ${element.id} >Remove</button>
                               </div>`
-                            );
+      );
     });
   }
 })
+
+$(document).on("click", "button.delete", deleteArtist);
+
+function deleteArtist(event) {
+  event.stopPropagation();
+  var id = $(this).attr("data-id");
+  $.ajax({
+    method: "DELETE",
+    url: "/api/artist/" + id
+  }).then(
+    $("#playlist_1").trigger('click')
+
+  )
+};
+
+$(document).on("click", "button.deleteAlbum", deleteAlbum)
+
+function deleteAlbum(event) {
+  event.stopPropagation();
+  var id = $(this).attr("data-id");
+  $.ajax({
+    method: "DELETE",
+    url: "/api/album/" + id
+  }).then(
+    $("#playlist_1").trigger('click')
+
+  )
+};
+
+$(document).on("click", "button.deleteSong", deleteSong)
+
+function deleteSong(event) {
+  event.stopPropagation();
+  var id = $(this).attr("data-id");
+  $.ajax({
+    method: "DELETE",
+    url: "/api/playlist/" + id
+  }).then(
+    $("#playlist_1").trigger('click')
+
+  )
+}
+
+
+
 
 let player;
 let isPlayerReady;
@@ -379,19 +426,18 @@ let uri;
 var str = window.location.href;
 var token = str.substring(str.indexOf("=") + 1, str.length);
 
-$.get('/token/' + token, function(tkn) {
-  console.log("here it fucking is ", tkn.access_token);
+$.get('/token/' + token, function (tkn) {
   token = tkn.access_token;
 })
 
 function play_track(e, index) {
 
-  $(document).ready( function() {
+  $(document).ready(function () {
     // Change icon on click
     $("i#track-icon" + index, this).toggleClass("fa-pause fa-play");
   })
 
-   uri = document.getElementById(e.id).value;
+  uri = document.getElementById(e.id).value;
 
   if (status === false) {
     startPlayer();

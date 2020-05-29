@@ -133,4 +133,38 @@ module.exports = function(app) {
       res.json(dbAlbum);
     });
   });
+
+  // DELETE route for deleting artists
+  app.delete("/api/artist/:id", function(req, res) {
+    db.Artist.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbArtist) {
+      res.json(dbArtist);
+    });
+  });
+
+   // DELETE route for deleting album
+   app.delete("/api/album/:id", function(req, res) {
+    db.Album.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbAlbum) {
+      res.json(dbAlbum);
+    });
+  });
+
+   // DELETE route for deleting playlist
+   app.delete("/api/playlist/:id", function(req, res) {
+    db.Playlist.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPlaylist) {
+      res.json(dbPlaylist);
+    });
+  });
+
 }
